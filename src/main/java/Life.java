@@ -11,7 +11,7 @@ class Life {
         int rowCount = rows.length;
         int columnCount = rows[0].length();
         char[][] grid = new char[rowCount][columnCount];
-        char[][] newWorld = new char[rowCount][columnCount];
+        char[][] newGrid = new char[rowCount][columnCount];
 
         for (int row = 0; row < rowCount; row++) {
             for (int column = 0; column < columnCount; column++) {
@@ -21,48 +21,28 @@ class Life {
             }
         }
 
-        if (world.equals(".x.\n.x.")) {
-            for (int row = 0; row < rowCount; row++) {
-                for (int column = 0; column < columnCount; column++) {
-                    if (column > 0 && column < columnCount - 1) {
-                        char leftCell = grid[row][column - 1];
-                        char rightCell = grid[row][column + 1];
-                        if (leftCell == '.' && rightCell == '.') {
-                            newWorld[row][column] = '.';
-                            continue;
-                        }
+        for (int row = 0; row < rowCount; row++) {
+            for (int column = 0; column < columnCount; column++) {
+                if (column > 0 && column < columnCount - 1) {
+                    char leftCell = grid[row][column - 1];
+                    char rightCell = grid[row][column + 1];
+                    if (leftCell == '.' && rightCell == '.') {
+                        newGrid[row][column] = '.';
+                        continue;
                     }
-                    newWorld[row][column] = '.';
                 }
+                newGrid[row][column] = '.';
             }
-
-            String geoffy = "";
-            for (int row = 0; row < rowCount; row++) {
-                for (int column = 0; column < columnCount; column++) {
-                    geoffy += newWorld[row][column];
-                }
-                if(row < rowCount - 1) {
-                    geoffy += "\n";
-                }
-            }
-            return geoffy;
         }
 
-        for (int i = 0; i < world.length(); i++) {
-            char currentCell = world.charAt(i);
-            if (i > 0 && i < world.length() - 1) {
-                char leftCell = world.charAt(i - 1);
-                char rightCell = world.charAt(i + 1);
-                if (leftCell == '.' && rightCell == '.') {
-                    nextWorld += '.';
-                    continue;
-                }
+        for (int row = 0; row < rowCount; row++) {
+            for (int column = 0; column < columnCount; column++) {
+                nextWorld += newGrid[row][column];
             }
-            nextWorld += currentCell;
+            if (row < rowCount - 1) {
+                nextWorld += "\n";
+            }
         }
-
         return nextWorld;
-
-
     }
 }
