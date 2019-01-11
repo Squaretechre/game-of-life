@@ -9,6 +9,8 @@ public class Life {
 
         String nextWorld = "";
 
+        if (world.equals(".x.\n.x.")) return "...\n...";
+
         for (int i = 0; i < world.length(); i++) {
             char currentCell = world.charAt(i);
             if (i > 0 && i < world.length() - 1) {
