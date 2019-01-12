@@ -7,10 +7,10 @@ class Cell {
     private ArrayList<Point> neighbours;
     private TwoDimensionalSpace twoDimensionalSpace;
 
-    Cell(Point point, TwoDimensionalSpace twoDimensionalSpace) {
+    Cell(Point point, TwoDimensionalSpace twoDimensionalSpace, Neighbourhood neighbourhood) {
         this.point = point;
         this.twoDimensionalSpace = twoDimensionalSpace;
-        this.neighbours = new Neighbourhood(point, twoDimensionalSpace).build();
+        this.neighbours = neighbourhood.build();
     }
 
     void tick() {

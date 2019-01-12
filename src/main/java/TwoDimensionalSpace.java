@@ -50,7 +50,7 @@ class TwoDimensionalSpace {
     }
 
     boolean cellExistsAt(Point point) {
-        return aliveCells.contains(new Cell(point, this));
+        return aliveCells.contains(new Cell(point, this, new Neighbourhood(point, this)));
     }
 
     private void removeDeadCells() {
@@ -60,7 +60,7 @@ class TwoDimensionalSpace {
     }
 
     private void birthNewCellAt(Point point) {
-        aliveCells.add(new Cell(point, this));
+        aliveCells.add(new Cell(point, this, new Neighbourhood(point, this)));
     }
 
     private int totalCellsNeighbouring(Point point) {
@@ -68,6 +68,6 @@ class TwoDimensionalSpace {
     }
 
     private Cell cellAt(Point point) {
-        return aliveCells.stream().filter(c -> c.equals(new Cell(point, this))).findFirst().get();
+        return aliveCells.stream().filter(c -> c.equals(new Cell(point, this, new Neighbourhood(point, this)))).findFirst().get();
     }
 }
