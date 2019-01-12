@@ -14,8 +14,7 @@ class TwoDimensionalSpace {
 
     void tick() {
         calculateNextGenerationOfCells();
-        cells.removeDeadCells();
-        cells.birthNewCells();
+        tickable.finishedTicking();
     }
 
     private void calculateNextGenerationOfCells() {

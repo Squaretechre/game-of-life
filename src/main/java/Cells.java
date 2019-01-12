@@ -74,4 +74,10 @@ class Cells implements CellObserver, Tickable {
     boolean hasCellAt(Point point) {
         return aliveCells.contains(new Cell(point, new Neighbourhood(point, this)));
     }
+
+    @Override
+    public void finishedTicking() {
+        removeDeadCells();
+        birthNewCells();
+    }
 }
