@@ -1,14 +1,14 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-class LivingCells {
+class Cells {
     private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
     private final TwoDimensionalSpace twoDimensionalSpace;
     private ArrayList<Cell> aliveCells;
     private ArrayList<Cell> deadCellsForRemoval;
     private ArrayList<Cell> cellsToBeBorn;
 
-    LivingCells(TwoDimensionalSpace twoDimensionalSpace) {
+    Cells(TwoDimensionalSpace twoDimensionalSpace) {
         this.twoDimensionalSpace = twoDimensionalSpace;
         aliveCells = new ArrayList<>();
         deadCellsForRemoval = new ArrayList<>();
