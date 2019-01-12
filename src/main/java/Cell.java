@@ -11,29 +11,7 @@ class Cell {
 
     Cell(Point point) {
         this.point = point;
-        this.neighbours = buildNeighbours(new Neighbourhood(point));
-    }
-
-    private ArrayList<Point> buildNeighbours(Neighbourhood neighbourhood) {
-        var neighbours = new ArrayList<Point>();
-        var top = new Point(neighbourhood.getPoint().x, neighbourhood.getPoint().y - 1);
-        var topLeft = new Point(neighbourhood.getPoint().x - 1, neighbourhood.getPoint().y - 1);
-        var topRight = new Point(neighbourhood.getPoint().x + 1, neighbourhood.getPoint().y - 1);
-        var left = new Point(neighbourhood.getPoint().x - 1, neighbourhood.getPoint().y);
-        var right = new Point(neighbourhood.getPoint().x + 1, neighbourhood.getPoint().y);
-        var bottom = new Point(neighbourhood.getPoint().x, neighbourhood.getPoint().y + 1);
-        var bottomLeft = new Point(neighbourhood.getPoint().x - 1, neighbourhood.getPoint().y + 1);
-        var bottomRight = new Point(neighbourhood.getPoint().x + 1, neighbourhood.getPoint().y + 1);
-
-        neighbours.add(top);
-        neighbours.add(topLeft);
-        neighbours.add(topRight);
-        neighbours.add(left);
-        neighbours.add(right);
-        neighbours.add(bottom);
-        neighbours.add(bottomLeft);
-        neighbours.add(bottomRight);
-        return neighbours;
+        this.neighbours = new Neighbourhood(point).buildNeighbours();
     }
 
     void registerSpace(TwoDimensionalSpace twoDimensionalSpace) {
