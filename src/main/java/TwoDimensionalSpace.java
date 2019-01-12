@@ -41,7 +41,7 @@ class TwoDimensionalSpace {
         aliveCells.add(cell);
     }
 
-    void registerForRemoval(Cell cell) {
+    void registerDeath(Cell cell) {
         deadCellsForRemoval.add(cell);
     }
 

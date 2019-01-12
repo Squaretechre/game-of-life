@@ -17,7 +17,7 @@ class Cell {
 
     void tick() {
         if (shouldDie()) {
-            twoDimensionalSpace.registerForRemoval(this);
+            twoDimensionalSpace.registerDeath(this);
         }
     }
 
