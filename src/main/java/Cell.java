@@ -5,25 +5,20 @@ class Cell {
     private final Point pointInSpace;
     private final Neighbourhood neighbourhood;
     private final Cells cells;
-    private TwoDimensionalSpace twoDimensionalSpace;
 
-    Cell(Point point, TwoDimensionalSpace twoDimensionalSpace, Neighbourhood neighbourhood) {
-        this(point, null, twoDimensionalSpace, neighbourhood);
+    Cell(Point point, Neighbourhood neighbourhood) {
+        this(point, null, neighbourhood);
     }
 
-    Cell(Point point, Cells cells, TwoDimensionalSpace twoDimensionalSpace, Neighbourhood neighbourhood) {
+    Cell(Point point, Cells cells, Neighbourhood neighbourhood) {
         this.pointInSpace = point;
         this.cells = cells;
-        this.twoDimensionalSpace = twoDimensionalSpace;
         this.neighbourhood = neighbourhood;
     }
 
     void tick(Point currentTickPoint) {
         if (thisCellIsLocatedAt(currentTickPoint) && shouldDie()) {
-            if (cells != null) {
-                cells.registerDeath(this);
-            }
-            twoDimensionalSpace.cells.registerDeath(this);
+            cells.registerDeath(this);
         }
     }
 

@@ -47,7 +47,7 @@ class TwoDimensionalSpace {
     }
 
     boolean cellExistsAt(Point point) {
-        return cells.contains(new Cell(point, this, new Neighbourhood(point, this)));
+        return cells.contains(new Cell(point, new Neighbourhood(point, this)));
     }
 
     void setCells(Cells cells) {
