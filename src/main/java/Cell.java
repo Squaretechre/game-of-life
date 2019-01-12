@@ -33,7 +33,7 @@ class Cell {
         return neighbourhood.totalNeighbours() > 3;
     }
 
-    boolean neighbours(Point point) {
+    boolean neighboursCellAt(Point point) {
         for (var neighbour : neighbours) {
             if (neighbour.equals(point)) return true;
         }

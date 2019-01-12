@@ -64,7 +64,7 @@ class TwoDimensionalSpace {
     }
 
     private int totalCellsNeighbouring(Point point) {
-        return (int) aliveCells.stream().filter(c -> c.neighbours(point)).count();
+        return (int) aliveCells.stream().filter(c -> c.neighboursCellAt(point)).count();
     }
 
     private Cell cellAt(Point point) {
