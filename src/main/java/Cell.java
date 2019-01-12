@@ -34,14 +34,7 @@ class Cell {
     }
 
     boolean neighboursCellAt(Point point) {
-        return hasNeighbourAt(point, neighbours);
-    }
-
-    private boolean hasNeighbourAt(Point point, ArrayList<Point> neighbours) {
-        for (var neighbour : neighbours) {
-            if (neighbour.equals(point)) return true;
-        }
-        return false;
+        return neighbourhood.hasNeighbourAt(point);
     }
 
     @Override

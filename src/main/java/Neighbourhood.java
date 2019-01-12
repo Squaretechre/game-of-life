@@ -34,7 +34,14 @@ class Neighbourhood {
         return neighbours;
     }
 
-    public int totalNeighbours() {
+    int totalNeighbours() {
         return (int) neighbours.stream().filter(n -> twoDimensionalSpace.cellExistsAt(n)).count();
+    }
+
+    boolean hasNeighbourAt(Point point) {
+        for (var neighbour : neighbours) {
+            if (neighbour.equals(point)) return true;
+        }
+        return false;
     }
 }
