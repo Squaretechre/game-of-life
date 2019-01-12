@@ -45,7 +45,7 @@ public class CellBecomesPopulated {
     @Test
     public void cell_with_more_than_three_neighbours_dies() {
         TwoDimensionalSpace twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
-        twoDimensionalSpace.registerCell(new Cell(new Point(1, 0)));
+        twoDimensionalSpace.registerCell(new Cell(new Point(1, 0), twoDimensionalSpace));
         twoDimensionalSpace.registerCell(new Cell(new Point(0, 1)));
         twoDimensionalSpace.registerCell(new Cell(new Point(1, 1)));
         twoDimensionalSpace.registerCell(new Cell(new Point(2, 1)));
