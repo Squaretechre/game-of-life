@@ -18,6 +18,10 @@ class Cell {
         }
     }
 
+    boolean neighboursCellAt(Point point) {
+        return neighbourhood.hasNeighbourAt(point);
+    }
+
     private boolean thisCellIsLocatedAt(Point currentPoint) {
         return pointInSpace.equals(currentPoint);
     }
@@ -32,10 +36,6 @@ class Cell {
 
     private boolean dieFromOvercrowding() {
         return neighbourhood.totalNeighbours() > 3;
-    }
-
-    boolean neighboursCellAt(Point point) {
-        return neighbourhood.hasNeighbourAt(point);
     }
 
     @Override

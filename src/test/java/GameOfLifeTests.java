@@ -5,7 +5,7 @@ import java.awt.*;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class CellBecomesPopulated {
+public class GameOfLifeTests {
 
     @Test
     public void empty_cell_becomes_populated_when_it_has_three_neighbours() {
@@ -76,5 +76,36 @@ public class CellBecomesPopulated {
         twoDimensionalSpace.tick();
 
         assertFalse(twoDimensionalSpace.contains(new Cell(point5, twoDimensionalSpace, new Neighbourhood(point5, twoDimensionalSpace))));
+    }
+
+    @Test
+    public void two_generations_produces_correct_space() {
+        var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
+        final var point = new Point(0, 1);
+        final var point1 = new Point(1, 1);
+        final var point2 = new Point(2, 1);
+        final var point3 = new Point(3, 1);
+
+        twoDimensionalSpace.registerCell(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
+        twoDimensionalSpace.registerCell(new Cell(point1, twoDimensionalSpace, new Neighbourhood(point1, twoDimensionalSpace)));
+        twoDimensionalSpace.registerCell(new Cell(point2, twoDimensionalSpace, new Neighbourhood(point2, twoDimensionalSpace)));
+        twoDimensionalSpace.registerCell(new Cell(point3, twoDimensionalSpace, new Neighbourhood(point3, twoDimensionalSpace)));
+
+        twoDimensionalSpace.tick();
+        twoDimensionalSpace.tick();
+
+        final var point4 = new Point(1, 0);
+        final var point5 = new Point(2, 0);
+        final var point6 = new Point(0, 1);
+        final var point7 = new Point(3, 1);
+        final var point8 = new Point(1, 2);
+        final var point9 = new Point(2, 2);
+
+        assertTrue(twoDimensionalSpace.contains(new Cell(point4, twoDimensionalSpace, new Neighbourhood(point4, twoDimensionalSpace))));
+        assertTrue(twoDimensionalSpace.contains(new Cell(point5, twoDimensionalSpace, new Neighbourhood(point5, twoDimensionalSpace))));
+        assertTrue(twoDimensionalSpace.contains(new Cell(point6, twoDimensionalSpace, new Neighbourhood(point6, twoDimensionalSpace))));
+        assertTrue(twoDimensionalSpace.contains(new Cell(point7, twoDimensionalSpace, new Neighbourhood(point7, twoDimensionalSpace))));
+        assertTrue(twoDimensionalSpace.contains(new Cell(point8, twoDimensionalSpace, new Neighbourhood(point8, twoDimensionalSpace))));
+        assertTrue(twoDimensionalSpace.contains(new Cell(point9, twoDimensionalSpace, new Neighbourhood(point9, twoDimensionalSpace))));
     }
 }
