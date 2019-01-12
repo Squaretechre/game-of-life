@@ -46,14 +46,6 @@ class TwoDimensionalSpace {
         return new Point(x, y);
     }
 
-    void registerCell(Cell cell) {
-        cells.add(cell);
-    }
-
-    boolean contains(Cell cell) {
-        return cells.contains(cell);
-    }
-
     boolean cellExistsAt(Point point) {
         return cells.contains(new Cell(point, this, new Neighbourhood(point, this)));
     }
