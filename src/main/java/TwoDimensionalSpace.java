@@ -1,25 +1,20 @@
 import java.awt.*;
-import java.util.ArrayList;
 
 class TwoDimensionalSpace {
     final LivingCells livingCells;
-    public ArrayList<Cell> deadCellsForRemoval;
-    public ArrayList<Cell> cellsToBeBorn;
     private final int xAxis;
     private final int yAxis;
 
     TwoDimensionalSpace(int x, int y) {
         this.livingCells = new LivingCells(this);
-        this.deadCellsForRemoval = new ArrayList<>();
-        this.cellsToBeBorn = new ArrayList<>();
         this.xAxis = x;
         this.yAxis = y;
     }
 
     void tick() {
         calculateNextGenerationOfCells();
-        livingCells.removeDeadCells(this);
-        livingCells.birthNewCells(this);
+        livingCells.removeDeadCells();
+        livingCells.birthNewCells();
         printSpace();
     }
 

@@ -5,8 +5,8 @@ class LivingCells {
     private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
     private final TwoDimensionalSpace twoDimensionalSpace;
     private ArrayList<Cell> aliveCells;
-    public ArrayList<Cell> deadCellsForRemoval;
-    public ArrayList<Cell> cellsToBeBorn;
+    private ArrayList<Cell> deadCellsForRemoval;
+    private ArrayList<Cell> cellsToBeBorn;
 
     LivingCells(TwoDimensionalSpace twoDimensionalSpace) {
         this.twoDimensionalSpace = twoDimensionalSpace;
@@ -23,7 +23,7 @@ class LivingCells {
         return aliveCells.contains(cell);
     }
 
-    void remove(Cell cell) {
+    private void remove(Cell cell) {
         aliveCells.remove(cell);
     }
 
@@ -45,32 +45,30 @@ class LivingCells {
     }
 
     private void birthNewCellAt(Point point) {
-        twoDimensionalSpace.livingCells.registerBirth(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)), twoDimensionalSpace);
+        registerBirth(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
     }
 
     boolean hasCellAt(Point currentPoint) {
         return aliveCells.stream().anyMatch(c -> c.isAtPoint(currentPoint));
     }
 
-    public void removeDeadCells(TwoDimensionalSpace twoDimensionalSpace) {
-        for (var cell : twoDimensionalSpace.deadCellsForRemoval) {
+    void removeDeadCells() {
+        for (var cell : deadCellsForRemoval) {
             remove(cell);
         }
     }
 
-    public void birthNewCells(TwoDimensionalSpace twoDimensionalSpace) {
-        for (var cell : twoDimensionalSpace.cellsToBeBorn) {
+    void birthNewCells() {
+        for (var cell : cellsToBeBorn) {
             add(cell);
         }
     }
 
-    public void registerBirth(Cell cell, TwoDimensionalSpace twoDimensionalSpace) {
+    private void registerBirth(Cell cell) {
         cellsToBeBorn.add(cell);
-        twoDimensionalSpace.cellsToBeBorn.add(cell);
     }
 
-    public void registerDeath(Cell cell, TwoDimensionalSpace twoDimensionalSpace) {
+    void registerDeath(Cell cell) {
         deadCellsForRemoval.add(cell);
-        twoDimensionalSpace.deadCellsForRemoval.add(cell);
     }
 }

@@ -14,7 +14,7 @@ class Cell {
 
     void tick(Point currentPoint) {
         if (thisCellIsLocatedAt(currentPoint) && shouldDie()) {
-            twoDimensionalSpace.livingCells.registerDeath(this, twoDimensionalSpace);
+            twoDimensionalSpace.livingCells.registerDeath(this);
         }
     }
 
