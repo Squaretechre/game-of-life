@@ -45,7 +45,7 @@ class Cells {
     }
 
     private void birthNewCellAt(Point point) {
-        registerBirth(new Cell(point, this, neighbourhoodFactory.createNeighbourhood(point)));
+        registerBirth(new Cell(point, this, neighbourhoodFactory.createFor(point)));
     }
 
     void removeDeadCells() {

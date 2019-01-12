@@ -7,7 +7,7 @@ class neighbourhoodFactory {
         this.twoDimensionalSpace = twoDimensionalSpace;
     }
 
-    Neighbourhood createNeighbourhood(Point point) {
+    Neighbourhood createFor(Point point) {
         return new Neighbourhood(point, twoDimensionalSpace);
     }
 }
