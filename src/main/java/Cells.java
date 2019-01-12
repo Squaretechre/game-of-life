@@ -30,6 +30,7 @@ class Cells implements CellObserver {
     }
 
     void add(Cell cell) {
+        cell.registerObserver(this);
         aliveCells.add(cell);
     }
 

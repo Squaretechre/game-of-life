@@ -16,11 +16,14 @@ class Cell {
         this.pointInSpace = point;
         this.cells = cells;
         this.neighbourhood = neighbourhood;
+        this.observers = new ArrayList<>();
     }
 
     void tick(Point currentTickPoint) {
         if (thisCellIsLocatedAt(currentTickPoint) && shouldDie()) {
-            cells.notifyOfDeath(this);
+            for (CellObserver observer : observers) {
+               observer.notifyOfDeath(this);
+            }
         }
     }
 
@@ -60,5 +63,4 @@ class Cell {
     public int hashCode() {
         return Objects.hash(pointInSpace);
     }
-
 }
