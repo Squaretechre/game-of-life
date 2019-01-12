@@ -1,3 +1,5 @@
+import life.Neighbourhood;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -9,19 +11,19 @@ class Cell {
 
     Cell(Point point) {
         this.point = point;
-        this.neighbours = buildNeighbours(point);
+        this.neighbours = buildNeighbours(new Neighbourhood(point));
     }
 
-    private ArrayList<Point> buildNeighbours(Point point) {
+    private ArrayList<Point> buildNeighbours(Neighbourhood neighbourhood) {
         var neighbours = new ArrayList<Point>();
-        var top = new Point(point.x, point.y - 1);
-        var topLeft = new Point(point.x - 1, point.y - 1);
-        var topRight = new Point(point.x + 1, point.y - 1);
-        var left = new Point(point.x - 1, point.y);
-        var right = new Point(point.x + 1, point.y);
-        var bottom = new Point(point.x, point.y + 1);
-        var bottomLeft = new Point(point.x - 1, point.y + 1);
-        var bottomRight = new Point(point.x + 1, point.y + 1);
+        var top = new Point(neighbourhood.getPoint().x, neighbourhood.getPoint().y - 1);
+        var topLeft = new Point(neighbourhood.getPoint().x - 1, neighbourhood.getPoint().y - 1);
+        var topRight = new Point(neighbourhood.getPoint().x + 1, neighbourhood.getPoint().y - 1);
+        var left = new Point(neighbourhood.getPoint().x - 1, neighbourhood.getPoint().y);
+        var right = new Point(neighbourhood.getPoint().x + 1, neighbourhood.getPoint().y);
+        var bottom = new Point(neighbourhood.getPoint().x, neighbourhood.getPoint().y + 1);
+        var bottomLeft = new Point(neighbourhood.getPoint().x - 1, neighbourhood.getPoint().y + 1);
+        var bottomRight = new Point(neighbourhood.getPoint().x + 1, neighbourhood.getPoint().y + 1);
 
         neighbours.add(top);
         neighbours.add(topLeft);
