@@ -1,13 +1,13 @@
 import java.awt.*;
 
-public class neighbourhoodFactory {
-    private final Cells cells;
+class neighbourhoodFactory {
+    private final TwoDimensionalSpace twoDimensionalSpace;
 
-    public neighbourhoodFactory(Cells cells) {
-        this.cells = cells;
+    neighbourhoodFactory(TwoDimensionalSpace twoDimensionalSpace) {
+        this.twoDimensionalSpace = twoDimensionalSpace;
     }
 
     Neighbourhood createNeighbourhood(Point point) {
-        return new Neighbourhood(point, cells.getTwoDimensionalSpace());
+        return new Neighbourhood(point, twoDimensionalSpace);
     }
 }

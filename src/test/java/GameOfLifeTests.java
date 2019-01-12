@@ -10,7 +10,7 @@ public class GameOfLifeTests {
     @Test
     public void empty_cell_becomes_populated_when_it_has_three_neighbours() {
         var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
-        var cells = new Cells(twoDimensionalSpace);
+        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
 
         twoDimensionalSpace.setCells(cells);
 
@@ -40,7 +40,7 @@ public class GameOfLifeTests {
     @Test
     public void cell_with_fewer_than_two_neighbours_dies() {
         var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
-        var cells = new Cells(twoDimensionalSpace);
+        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
 
         twoDimensionalSpace.setCells(cells);
 
@@ -61,7 +61,7 @@ public class GameOfLifeTests {
     @Test
     public void cell_with_two_neighbours_lives_on() {
         var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
-        var cells = new Cells(twoDimensionalSpace);
+        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
 
         twoDimensionalSpace.setCells(cells);
 
@@ -92,7 +92,7 @@ public class GameOfLifeTests {
     @Test
     public void cell_with_more_than_three_neighbours_dies() {
         var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
-        var cells = new Cells(twoDimensionalSpace);
+        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
 
         twoDimensionalSpace.setCells(cells);
 
@@ -152,7 +152,7 @@ public class GameOfLifeTests {
     @Test
     public void two_generations_produces_correct_space() {
         var twoDimensionalSpace = new TwoDimensionalSpace(4, 4);
-        var cells = new Cells(twoDimensionalSpace);
+        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
 
         twoDimensionalSpace.setCells(cells);
 
