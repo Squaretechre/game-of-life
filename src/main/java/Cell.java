@@ -1,17 +1,14 @@
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Objects;
 
 class Cell {
     private final Point point;
     private final Neighbourhood neighbourhood;
-    private ArrayList<Point> neighbours;
     private TwoDimensionalSpace twoDimensionalSpace;
 
     Cell(Point point, TwoDimensionalSpace twoDimensionalSpace, Neighbourhood neighbourhood) {
         this.point = point;
         this.twoDimensionalSpace = twoDimensionalSpace;
-        this.neighbours = neighbourhood.build();
         this.neighbourhood = neighbourhood;
     }
 

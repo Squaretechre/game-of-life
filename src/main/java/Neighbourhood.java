@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 class Neighbourhood {
     private final Point point;
@@ -12,7 +13,7 @@ class Neighbourhood {
         this.neighbours = build();
     }
 
-    ArrayList<Point> build() {
+    private ArrayList<Point> build() {
         var neighbours = new ArrayList<Point>();
         var top = new Point(point.x, point.y - 1);
         var topLeft = new Point(point.x - 1, point.y - 1);
@@ -35,7 +36,11 @@ class Neighbourhood {
     }
 
     int totalNeighbours() {
-        return (int) neighbours.stream().filter(n -> twoDimensionalSpace.cellExistsAt(n)).count();
+        return (int) allNeighbouringPoints().filter(twoDimensionalSpace::cellExistsAt).count();
+    }
+
+    private Stream<Point> allNeighbouringPoints() {
+        return neighbours.stream();
     }
 
     boolean hasNeighbourAt(Point point) {
