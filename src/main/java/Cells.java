@@ -45,7 +45,7 @@ class Cells {
     }
 
     private void birthNewCellAt(Point point) {
-        registerBirth(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
+        registerBirth(new Cell(point, this, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
     }
 
     void removeDeadCells() {

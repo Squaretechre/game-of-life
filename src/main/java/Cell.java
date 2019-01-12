@@ -4,10 +4,16 @@ import java.util.Objects;
 class Cell {
     private final Point pointInSpace;
     private final Neighbourhood neighbourhood;
+    private final Cells cells;
     private TwoDimensionalSpace twoDimensionalSpace;
 
     Cell(Point point, TwoDimensionalSpace twoDimensionalSpace, Neighbourhood neighbourhood) {
+        this(point, null, twoDimensionalSpace, neighbourhood);
+    }
+
+    Cell(Point point, Cells cells, TwoDimensionalSpace twoDimensionalSpace, Neighbourhood neighbourhood) {
         this.pointInSpace = point;
+        this.cells = cells;
         this.twoDimensionalSpace = twoDimensionalSpace;
         this.neighbourhood = neighbourhood;
     }
