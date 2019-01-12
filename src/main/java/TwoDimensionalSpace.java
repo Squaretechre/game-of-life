@@ -51,8 +51,4 @@ class TwoDimensionalSpace {
             livingCells.remove(cell);
         }
     }
-
-    public int totalCellsNeighbouring(Point point) {
-        return livingCells.totalCellsNeighbouring(point);
-    }
 }
