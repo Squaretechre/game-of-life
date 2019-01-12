@@ -15,9 +15,13 @@ class Cell {
 
     void tick(Point currentTickPoint) {
         if (thisCellIsLocatedAt(currentTickPoint) && shouldDie()) {
-            for (CellObserver observer : observers) {
-               observer.notifyOfDeath(this);
-            }
+            notifyObserversOfDeath();
+        }
+    }
+
+    private void notifyObserversOfDeath() {
+        for (CellObserver observer : observers) {
+           observer.notifyOfDeath(this);
         }
     }
 
