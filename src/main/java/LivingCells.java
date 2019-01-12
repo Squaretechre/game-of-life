@@ -3,9 +3,11 @@ import java.util.ArrayList;
 
 class LivingCells {
     private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
+    private final TwoDimensionalSpace twoDimensionalSpace;
     private ArrayList<Cell> aliveCells;
 
-    LivingCells() {
+    LivingCells(TwoDimensionalSpace twoDimensionalSpace) {
+        this.twoDimensionalSpace = twoDimensionalSpace;
         aliveCells = new ArrayList<>();
     }
 
@@ -27,9 +29,9 @@ class LivingCells {
         }
     }
 
-    void birthNewCell(Point currentPoint, TwoDimensionalSpace twoDimensionalSpace) {
+    void birthNewCell(Point currentPoint) {
         if (totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
-            birthNewCellAt(currentPoint, twoDimensionalSpace);
+            birthNewCellAt(currentPoint);
         }
     }
 
@@ -37,7 +39,7 @@ class LivingCells {
         return (int) aliveCells.stream().filter(c -> c.neighboursCellAt(point)).count();
     }
 
-    private void birthNewCellAt(Point point, TwoDimensionalSpace twoDimensionalSpace) {
+    private void birthNewCellAt(Point point) {
         add(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
     }
 }

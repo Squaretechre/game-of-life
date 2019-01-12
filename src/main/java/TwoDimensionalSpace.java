@@ -8,7 +8,7 @@ class TwoDimensionalSpace {
     private final int yAxis;
 
     TwoDimensionalSpace(int x, int y) {
-        this.livingCells = new LivingCells();
+        this.livingCells = new LivingCells(this);
         this.deadCellsForRemoval = new ArrayList<>();
         this.xAxis = x;
         this.yAxis = y;
@@ -25,7 +25,7 @@ class TwoDimensionalSpace {
                 var currentPoint = new Point(x, y);
 
                 livingCells.tickFor(currentPoint);
-                livingCells.birthNewCell(currentPoint, this);
+                livingCells.birthNewCell(currentPoint);
             }
         }
     }
