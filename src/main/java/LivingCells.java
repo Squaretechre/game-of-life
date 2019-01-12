@@ -21,10 +21,6 @@ class LivingCells {
         aliveCells.remove(cell);
     }
 
-    int totalCellsNeighbouring(Point point) {
-        return (int) aliveCells.stream().filter(c -> c.neighboursCellAt(point)).count();
-    }
-
     void tickFor(Point currentPoint) {
         for (Cell cell : aliveCells) {
             cell.tick(currentPoint);
@@ -35,6 +31,10 @@ class LivingCells {
         if (totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
             birthNewCellAt(currentPoint, twoDimensionalSpace);
         }
+    }
+
+    private int totalCellsNeighbouring(Point point) {
+        return (int) aliveCells.stream().filter(c -> c.neighboursCellAt(point)).count();
     }
 
     private void birthNewCellAt(Point point, TwoDimensionalSpace twoDimensionalSpace) {

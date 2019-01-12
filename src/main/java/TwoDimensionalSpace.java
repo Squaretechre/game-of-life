@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 class TwoDimensionalSpace {
-    final LivingCells livingCells;
+    private final LivingCells livingCells;
     private ArrayList<Cell> deadCellsForRemoval;
     private final int xAxis;
     private final int yAxis;
