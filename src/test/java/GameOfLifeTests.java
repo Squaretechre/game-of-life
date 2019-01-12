@@ -8,7 +8,6 @@ public class GameOfLifeTests {
 
     @Test
     public void empty_cell_becomes_populated_when_it_has_three_neighbours() {
-        var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
 
         Point point = new Point(0, 0);
         Point point1 = new Point(0, 1);
@@ -21,6 +20,7 @@ public class GameOfLifeTests {
         cells.addAt(point2);
         cells.addAt(point3);
 
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 2, 2);
         twoDimensionalSpace.setCells(cells);
         twoDimensionalSpace.tick();
 

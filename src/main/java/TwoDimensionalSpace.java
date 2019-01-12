@@ -1,12 +1,17 @@
 import java.awt.*;
 
 class TwoDimensionalSpace {
+    private final Tickable tickable;
     Cells cells;
     private final int xAxis;
     private final int yAxis;
 
     TwoDimensionalSpace(int x, int y) {
-        this.cells = new Cells();
+        this(new Cells(), x, y);
+    }
+
+    TwoDimensionalSpace(Tickable tickable, int x, int y) {
+        this.tickable = tickable;
         this.xAxis = x;
         this.yAxis = y;
     }
