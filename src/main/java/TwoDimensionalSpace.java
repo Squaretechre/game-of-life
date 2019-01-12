@@ -4,14 +4,14 @@ import java.util.ArrayList;
 class TwoDimensionalSpace {
     private final LivingCells livingCells;
     private ArrayList<Cell> deadCellsForRemoval;
-    private ArrayList<Cell> cellsToBeBorth;
+    private ArrayList<Cell> cellsToBeBorn;
     private final int xAxis;
     private final int yAxis;
 
     TwoDimensionalSpace(int x, int y) {
         this.livingCells = new LivingCells(this);
         this.deadCellsForRemoval = new ArrayList<>();
-        this.cellsToBeBorth = new ArrayList<>();
+        this.cellsToBeBorn = new ArrayList<>();
         this.xAxis = x;
         this.yAxis = y;
     }
@@ -22,7 +22,6 @@ class TwoDimensionalSpace {
         birthNewCells();
         printSpace();
     }
-
 
     private void calculateNextGenerationOfCells() {
         for (var y = 0; y < yAxis; y++) {
@@ -59,7 +58,7 @@ class TwoDimensionalSpace {
     }
 
     void registerBirth(Cell cell) {
-        cellsToBeBorth.add(cell);
+        cellsToBeBorn.add(cell);
     }
 
     boolean contains(Cell cell) {
@@ -77,7 +76,7 @@ class TwoDimensionalSpace {
     }
 
     private void birthNewCells() {
-        for (var cell : cellsToBeBorth) {
+        for (var cell : cellsToBeBorn) {
             livingCells.add(cell);
         }
     }

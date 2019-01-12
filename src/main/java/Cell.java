@@ -2,22 +2,24 @@ import java.awt.*;
 import java.util.Objects;
 
 class Cell {
-    private final Point point;
+    private final Point pointInSpace;
     private final Neighbourhood neighbourhood;
     private TwoDimensionalSpace twoDimensionalSpace;
 
     Cell(Point point, TwoDimensionalSpace twoDimensionalSpace, Neighbourhood neighbourhood) {
-        this.point = point;
+        this.pointInSpace = point;
         this.twoDimensionalSpace = twoDimensionalSpace;
         this.neighbourhood = neighbourhood;
     }
 
     void tick(Point currentPoint) {
-        if (currentPoint.equals(point)) {
-            if (shouldDie()) {
-                twoDimensionalSpace.registerDeath(this);
-            }
+        if (thisCellIsLocatedAt(currentPoint) && shouldDie()) {
+            twoDimensionalSpace.registerDeath(this);
         }
+    }
+
+    private boolean thisCellIsLocatedAt(Point currentPoint) {
+        return pointInSpace.equals(currentPoint);
     }
 
     private boolean shouldDie() {
@@ -41,22 +43,15 @@ class Cell {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         var cell = (Cell) o;
-        return Objects.equals(point, cell.point);
+        return Objects.equals(pointInSpace, cell.pointInSpace);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
-    }
-
-    @Override
-    public String toString() {
-        return "Cell{" +
-                "point=" + point +
-                '}';
+        return Objects.hash(pointInSpace);
     }
 
     boolean isAtPoint(Point currentPoint) {
-        return point.equals(currentPoint);
+        return pointInSpace.equals(currentPoint);
     }
 }
