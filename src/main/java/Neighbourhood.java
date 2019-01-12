@@ -4,10 +4,12 @@ import java.util.ArrayList;
 class Neighbourhood {
     private final Point point;
     private final TwoDimensionalSpace twoDimensionalSpace;
+    private final ArrayList<Point> neighbours;
 
     Neighbourhood(Point point, TwoDimensionalSpace twoDimensionalSpace) {
         this.point = point;
         this.twoDimensionalSpace = twoDimensionalSpace;
+        this.neighbours = build();
     }
 
     ArrayList<Point> build() {
@@ -30,5 +32,9 @@ class Neighbourhood {
         neighbours.add(bottomLeft);
         neighbours.add(bottomRight);
         return neighbours;
+    }
+
+    public int totalNeighbours() {
+        return (int) neighbours.stream().filter(n -> twoDimensionalSpace.cellExistsAt(n)).count();
     }
 }

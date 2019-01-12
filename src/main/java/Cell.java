@@ -4,6 +4,7 @@ import java.util.Objects;
 
 class Cell {
     private final Point point;
+    private final Neighbourhood neighbourhood;
     private ArrayList<Point> neighbours;
     private TwoDimensionalSpace twoDimensionalSpace;
 
@@ -11,6 +12,7 @@ class Cell {
         this.point = point;
         this.twoDimensionalSpace = twoDimensionalSpace;
         this.neighbours = neighbourhood.build();
+        this.neighbourhood = neighbourhood;
     }
 
     void tick() {
@@ -24,14 +26,14 @@ class Cell {
     }
 
     private boolean dieFromUnderpopulation() {
-        return totalNeighbours() < 2;
+        return neighbourhood.totalNeighbours() < 2;
     }
 
     private boolean dieFromOvercrowding() {
         return totalNeighbours() > 3;
     }
 
-    private int totalNeighbours() {
+    public int totalNeighbours() {
         return (int) neighbours.stream().filter(n -> twoDimensionalSpace.cellExistsAt(n)).count();
     }
 
