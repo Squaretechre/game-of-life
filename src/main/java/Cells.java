@@ -8,6 +8,10 @@ class Cells {
     private ArrayList<Cell> deadCellsForRemoval;
     private ArrayList<Cell> cellsToBeBorn;
 
+    Cells() {
+        this(null);
+    }
+
     Cells(TwoDimensionalSpace twoDimensionalSpace) {
         this.twoDimensionalSpace = twoDimensionalSpace;
         aliveCells = new ArrayList<>();

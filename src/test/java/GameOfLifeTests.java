@@ -81,15 +81,24 @@ public class GameOfLifeTests {
     @Test
     public void two_generations_produces_correct_space() {
         var twoDimensionalSpace = new TwoDimensionalSpace(4, 4);
+        var cells = new Cells(twoDimensionalSpace);
+
+        twoDimensionalSpace.setCells(cells);
+
         final var point = new Point(0, 1);
         final var point1 = new Point(1, 1);
         final var point2 = new Point(2, 1);
         final var point3 = new Point(3, 1);
 
-        twoDimensionalSpace.registerCell(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
-        twoDimensionalSpace.registerCell(new Cell(point1, twoDimensionalSpace, new Neighbourhood(point1, twoDimensionalSpace)));
-        twoDimensionalSpace.registerCell(new Cell(point2, twoDimensionalSpace, new Neighbourhood(point2, twoDimensionalSpace)));
-        twoDimensionalSpace.registerCell(new Cell(point3, twoDimensionalSpace, new Neighbourhood(point3, twoDimensionalSpace)));
+        Cell cell = new Cell(point, cells, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace));
+        Cell cell1 = new Cell(point1, cells, twoDimensionalSpace, new Neighbourhood(point1, twoDimensionalSpace));
+        Cell cell2 = new Cell(point2, cells, twoDimensionalSpace, new Neighbourhood(point2, twoDimensionalSpace));
+        Cell cell3 = new Cell(point3, cells, twoDimensionalSpace, new Neighbourhood(point3, twoDimensionalSpace));
+
+        cells.add(cell);
+        cells.add(cell1);
+        cells.add(cell2);
+        cells.add(cell3);
 
         twoDimensionalSpace.tick();
         twoDimensionalSpace.tick();
@@ -101,11 +110,25 @@ public class GameOfLifeTests {
         final var point8 = new Point(1, 2);
         final var point9 = new Point(2, 2);
 
-        assertTrue(twoDimensionalSpace.contains(new Cell(point4, twoDimensionalSpace, new Neighbourhood(point4, twoDimensionalSpace))));
-        assertTrue(twoDimensionalSpace.contains(new Cell(point5, twoDimensionalSpace, new Neighbourhood(point5, twoDimensionalSpace))));
-        assertTrue(twoDimensionalSpace.contains(new Cell(point6, twoDimensionalSpace, new Neighbourhood(point6, twoDimensionalSpace))));
-        assertTrue(twoDimensionalSpace.contains(new Cell(point7, twoDimensionalSpace, new Neighbourhood(point7, twoDimensionalSpace))));
-        assertTrue(twoDimensionalSpace.contains(new Cell(point8, twoDimensionalSpace, new Neighbourhood(point8, twoDimensionalSpace))));
-        assertTrue(twoDimensionalSpace.contains(new Cell(point9, twoDimensionalSpace, new Neighbourhood(point9, twoDimensionalSpace))));
+        Cell cell4 = new Cell(point4, twoDimensionalSpace, new Neighbourhood(point4, twoDimensionalSpace));
+        Cell cell5 = new Cell(point5, twoDimensionalSpace, new Neighbourhood(point5, twoDimensionalSpace));
+        Cell cell6 = new Cell(point6, twoDimensionalSpace, new Neighbourhood(point6, twoDimensionalSpace));
+        Cell cell7 = new Cell(point7, twoDimensionalSpace, new Neighbourhood(point7, twoDimensionalSpace));
+        Cell cell8 = new Cell(point8, twoDimensionalSpace, new Neighbourhood(point8, twoDimensionalSpace));
+        Cell cell9 = new Cell(point9, twoDimensionalSpace, new Neighbourhood(point9, twoDimensionalSpace));
+
+        assertTrue(twoDimensionalSpace.contains(cell4));
+        assertTrue(twoDimensionalSpace.contains(cell5));
+        assertTrue(twoDimensionalSpace.contains(cell6));
+        assertTrue(twoDimensionalSpace.contains(cell7));
+        assertTrue(twoDimensionalSpace.contains(cell8));
+        assertTrue(twoDimensionalSpace.contains(cell9));
+
+        assertTrue(cells.contains(cell4));
+        assertTrue(cells.contains(cell5));
+        assertTrue(cells.contains(cell6));
+        assertTrue(cells.contains(cell7));
+        assertTrue(cells.contains(cell8));
+        assertTrue(cells.contains(cell9));
     }
 }

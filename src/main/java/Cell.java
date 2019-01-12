@@ -20,6 +20,9 @@ class Cell {
 
     void tick(Point currentTickPoint) {
         if (thisCellIsLocatedAt(currentTickPoint) && shouldDie()) {
+            if (cells != null) {
+                cells.registerDeath(this);
+            }
             twoDimensionalSpace.cells.registerDeath(this);
         }
     }

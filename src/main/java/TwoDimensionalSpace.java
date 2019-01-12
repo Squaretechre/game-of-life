@@ -1,7 +1,7 @@
 import java.awt.*;
 
 class TwoDimensionalSpace {
-    final Cells cells;
+    Cells cells;
     private final int xAxis;
     private final int yAxis;
 
@@ -16,18 +16,6 @@ class TwoDimensionalSpace {
         cells.removeDeadCells();
         cells.birthNewCells();
         printSpace();
-    }
-
-    private void calculateNextGenerationOfCells() {
-        for (var y = 0; y < yAxis; y++) {
-            for (var x = 0; x < xAxis; x++) {
-                cells.tickFor(currentPoint(x, y));
-            }
-        }
-    }
-
-    private Point currentPoint(int x, int y) {
-        return new Point(x, y);
     }
 
     private void printSpace() {
@@ -46,6 +34,18 @@ class TwoDimensionalSpace {
         System.out.println(grid);
     }
 
+    private void calculateNextGenerationOfCells() {
+        for (var y = 0; y < yAxis; y++) {
+            for (var x = 0; x < xAxis; x++) {
+                cells.tickFor(currentPoint(x, y));
+            }
+        }
+    }
+
+    private Point currentPoint(int x, int y) {
+        return new Point(x, y);
+    }
+
     void registerCell(Cell cell) {
         cells.add(cell);
     }
@@ -56,5 +56,9 @@ class TwoDimensionalSpace {
 
     boolean cellExistsAt(Point point) {
         return cells.contains(new Cell(point, this, new Neighbourhood(point, this)));
+    }
+
+    void setCells(Cells cells) {
+        this.cells = cells;
     }
 }
