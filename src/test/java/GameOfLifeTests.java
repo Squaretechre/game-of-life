@@ -27,7 +27,6 @@ public class GameOfLifeTests {
         var cells = new Cells(neighbourhoodFactory, livingCells);
 
         twoDimensionalSpace.setCells(cells);
-
         twoDimensionalSpace.tick();
 
         assertTrue(cells.contains(cell));
@@ -40,15 +39,18 @@ public class GameOfLifeTests {
     public void cell_with_fewer_than_two_neighbours_dies() {
         var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
         var neighbourhoodFactory = new NeighbourhoodFactory(twoDimensionalSpace);
-        var cells = new Cells(neighbourhoodFactory);
-
-        twoDimensionalSpace.setCells(cells);
 
         var cell = createCell(neighbourhoodFactory, new Point(0, 0));
         var cell1 = createCell(neighbourhoodFactory, new Point(0, 0));
 
-        cells.add(cell);
+        var livingCells = new ArrayList<Cell>() {{
+            add(cell);
+            add(cell1);
+        }};
 
+        var cells = new Cells(neighbourhoodFactory, livingCells);
+
+        twoDimensionalSpace.setCells(cells);
         twoDimensionalSpace.tick();
 
         assertFalse(cells.contains(cell1));
@@ -58,9 +60,6 @@ public class GameOfLifeTests {
     public void cell_with_two_neighbours_lives_on() {
         var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
         var neighbourhoodFactory = new NeighbourhoodFactory(twoDimensionalSpace);
-        var cells = new Cells(neighbourhoodFactory);
-
-        twoDimensionalSpace.setCells(cells);
 
         var cell = createCell(neighbourhoodFactory, new Point(0, 0));
         var cell1 = createCell(neighbourhoodFactory, new Point(1, 0));
@@ -68,10 +67,17 @@ public class GameOfLifeTests {
         var cell3 = createCell(neighbourhoodFactory, new Point(1, 0));
         var cell4 = createCell(neighbourhoodFactory, new Point(1, 1));
 
-        cells.add(cell);
-        cells.add(cell1);
-        cells.add(cell2);
+        var livingCells = new ArrayList<Cell>() {{
+            add(cell);
+            add(cell1);
+            add(cell2);
+            add(cell3);
+            add(cell4);
+        }};
 
+        var cells = new Cells(neighbourhoodFactory, livingCells);
+
+        twoDimensionalSpace.setCells(cells);
         twoDimensionalSpace.tick();
 
         assertTrue(cells.contains(cell3));
@@ -82,9 +88,6 @@ public class GameOfLifeTests {
     public void cell_with_more_than_three_neighbours_dies() {
         var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
         var neighbourhoodFactory = new NeighbourhoodFactory(twoDimensionalSpace);
-        var cells = new Cells(neighbourhoodFactory);
-
-        twoDimensionalSpace.setCells(cells);
 
         var cell = createCell(neighbourhoodFactory, new Point(1, 0));
         var cell1 = createCell(neighbourhoodFactory, new Point(0, 1));
@@ -101,12 +104,17 @@ public class GameOfLifeTests {
         var cell12 = createCell(neighbourhoodFactory, new Point(1, 2));
         var cell13 = createCell(neighbourhoodFactory, new Point(2, 2));
 
-        cells.add(cell);
-        cells.add(cell1);
-        cells.add(cell2);
-        cells.add(cell3);
-        cells.add(cell4);
+        var livingCells = new ArrayList<Cell>() {{
+            add(cell);
+            add(cell1);
+            add(cell2);
+            add(cell3);
+            add(cell4);
+        }};
 
+        var cells = new Cells(neighbourhoodFactory, livingCells);
+
+        twoDimensionalSpace.setCells(cells);
         twoDimensionalSpace.tick();
 
         assertFalse(cells.contains(cell5));
@@ -125,20 +133,22 @@ public class GameOfLifeTests {
     public void two_generations_produces_correct_space() {
         var twoDimensionalSpace = new TwoDimensionalSpace(4, 4);
         var neighbourhoodFactory = new NeighbourhoodFactory(twoDimensionalSpace);
-        var cells = new Cells(neighbourhoodFactory);
-
-        twoDimensionalSpace.setCells(cells);
 
         var cell = createCell(neighbourhoodFactory, new Point(0, 1));
         var cell1 = createCell(neighbourhoodFactory, new Point(1, 1));
         var cell2 = createCell(neighbourhoodFactory, new Point(2, 1));
         var cell3 = createCell(neighbourhoodFactory, new Point(3, 1));
 
-        cells.add(cell);
-        cells.add(cell1);
-        cells.add(cell2);
-        cells.add(cell3);
+        var livingCells = new ArrayList<Cell>() {{
+            add(cell);
+            add(cell1);
+            add(cell2);
+            add(cell3);
+        }};
 
+        var cells = new Cells(neighbourhoodFactory, livingCells);
+
+        twoDimensionalSpace.setCells(cells);
         twoDimensionalSpace.tick();
         twoDimensionalSpace.tick();
 
