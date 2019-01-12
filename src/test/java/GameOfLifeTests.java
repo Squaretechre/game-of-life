@@ -40,21 +40,32 @@ public class GameOfLifeTests {
     @Test
     public void cell_with_two_neighbours_lives_on() {
         var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
+        var cells = new Cells(twoDimensionalSpace);
+        
+        twoDimensionalSpace.setCells(cells);
+
         final var point = new Point(0, 0);
         final var point1 = new Point(1, 0);
         final var point2 = new Point(2, 0);
 
-        twoDimensionalSpace.registerCell(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
-        twoDimensionalSpace.registerCell(new Cell(point1, twoDimensionalSpace, new Neighbourhood(point1, twoDimensionalSpace)));
-        twoDimensionalSpace.registerCell(new Cell(point2, twoDimensionalSpace, new Neighbourhood(point2, twoDimensionalSpace)));
+        Cell cell = new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace));
+        Cell cell1 = new Cell(point1, twoDimensionalSpace, new Neighbourhood(point1, twoDimensionalSpace));
+        Cell cell2 = new Cell(point2, twoDimensionalSpace, new Neighbourhood(point2, twoDimensionalSpace));
+
+        cells.add(cell);
+        cells.add(cell1);
+        cells.add(cell2);
 
         twoDimensionalSpace.tick();
 
         final var point3 = new Point(1, 0);
         final var point4 = new Point(1, 1);
 
-        assertTrue(twoDimensionalSpace.contains(new Cell(point3, twoDimensionalSpace, new Neighbourhood(point3, twoDimensionalSpace))));
-        assertTrue(twoDimensionalSpace.contains(new Cell(point4, twoDimensionalSpace, new Neighbourhood(point4, twoDimensionalSpace))));
+        Cell cell3 = new Cell(point3, twoDimensionalSpace, new Neighbourhood(point3, twoDimensionalSpace));
+        Cell cell4 = new Cell(point4, twoDimensionalSpace, new Neighbourhood(point4, twoDimensionalSpace));
+
+        assertTrue(cells.contains(cell3));
+        assertTrue(cells.contains(cell4));
     }
 
     @Test
