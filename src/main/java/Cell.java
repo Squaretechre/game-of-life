@@ -13,10 +13,6 @@ class Cell {
         this.neighbours = new Neighbourhood(point, twoDimensionalSpace).build();
     }
 
-    void registerSpace(TwoDimensionalSpace twoDimensionalSpace) {
-        this.twoDimensionalSpace = twoDimensionalSpace;
-    }
-
     void tick() {
         if (shouldDie()) {
             twoDimensionalSpace.registerForRemoval(this);

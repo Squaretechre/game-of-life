@@ -38,7 +38,6 @@ class TwoDimensionalSpace {
     }
 
     void registerCell(Cell cell) {
-        cell.registerSpace(this);
         aliveCells.add(cell);
     }
 
