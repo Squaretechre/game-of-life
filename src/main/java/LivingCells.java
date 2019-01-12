@@ -2,9 +2,11 @@ import java.awt.*;
 import java.util.ArrayList;
 
 class LivingCells {
+    private final TwoDimensionalSpace twoDimensionalSpace;
     private ArrayList<Cell> aliveCells;
 
-    LivingCells() {
+    LivingCells(TwoDimensionalSpace twoDimensionalSpace) {
+        this.twoDimensionalSpace = twoDimensionalSpace;
         aliveCells = new ArrayList<>();
     }
 
@@ -26,5 +28,11 @@ class LivingCells {
 
     Cell findCell(Cell cell) {
         return aliveCells.stream().filter(c -> c.equals(cell)).findFirst().get();
+    }
+
+    void livingCellsTick(Point currentPoint, TwoDimensionalSpace twoDimensionalSpace) {
+        if (twoDimensionalSpace.cellExistsAt(currentPoint)) {
+            twoDimensionalSpace.cellAt(currentPoint).tick();
+        }
     }
 }
