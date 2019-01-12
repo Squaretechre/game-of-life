@@ -21,18 +21,20 @@ class TwoDimensionalSpace {
     private void calculateNextGenerationOfCells() {
         for (var y = 0; y < yAxis; y++) {
             for (var x = 0; x < xAxis; x++) {
-                var currentPoint = new Point(x, y);
-                cells.tickFor(currentPoint);
+                cells.tickFor(currentPoint(x, y));
             }
         }
+    }
+
+    private Point currentPoint(int x, int y) {
+        return new Point(x, y);
     }
 
     private void printSpace() {
         String grid = "";
         for (var y = 0; y < yAxis; y++) {
             for (var x = 0; x < xAxis; x++) {
-                var currentPoint = new Point(x, y);
-                if (cells.hasCellAt(currentPoint)) {
+                if (cellExistsAt(currentPoint(x, y))) {
                     grid += "x";
                 } else {
                     grid += ".";
@@ -44,15 +46,15 @@ class TwoDimensionalSpace {
         System.out.println(grid);
     }
 
-    public void registerCell(Cell cell) {
+    void registerCell(Cell cell) {
         cells.add(cell);
     }
 
-    public boolean contains(Cell cell) {
+    boolean contains(Cell cell) {
         return cells.contains(cell);
     }
 
-    public boolean cellExistsAt(Point point) {
+    boolean cellExistsAt(Point point) {
         return cells.contains(new Cell(point, this, new Neighbourhood(point, this)));
     }
 }

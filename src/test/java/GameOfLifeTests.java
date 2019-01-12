@@ -80,7 +80,7 @@ public class GameOfLifeTests {
 
     @Test
     public void two_generations_produces_correct_space() {
-        var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
+        var twoDimensionalSpace = new TwoDimensionalSpace(4, 4);
         final var point = new Point(0, 1);
         final var point1 = new Point(1, 1);
         final var point2 = new Point(2, 1);
