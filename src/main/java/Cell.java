@@ -5,16 +5,10 @@ import java.util.Objects;
 class Cell {
     private final Point pointInSpace;
     private final Neighbourhood neighbourhood;
-    private final Cells cells;
     private ArrayList<CellObserver> observers;
 
     Cell(Point point, Neighbourhood neighbourhood) {
-        this(point, null, neighbourhood);
-    }
-
-    Cell(Point point, Cells cells, Neighbourhood neighbourhood) {
         this.pointInSpace = point;
-        this.cells = cells;
         this.neighbourhood = neighbourhood;
         this.observers = new ArrayList<>();
     }

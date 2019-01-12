@@ -16,10 +16,10 @@ public class GameOfLifeTests {
 
         twoDimensionalSpace.setCells(cells);
 
-        var cell = createCell(neighbourhoodFactory, cells, new Point(0, 0));
-        var cell1 = createCell(neighbourhoodFactory, cells, new Point(0, 1));
-        var cell2 = createCell(neighbourhoodFactory, cells, new Point(1, 0));
-        var cell3 = createCell(neighbourhoodFactory, cells, new Point(1, 1));
+        var cell = createCell(neighbourhoodFactory, new Point(0, 0));
+        var cell1 = createCell(neighbourhoodFactory, new Point(0, 1));
+        var cell2 = createCell(neighbourhoodFactory, new Point(1, 0));
+        var cell3 = createCell(neighbourhoodFactory, new Point(1, 1));
 
         cells.add(cell);
         cells.add(cell1);
@@ -41,8 +41,8 @@ public class GameOfLifeTests {
 
         twoDimensionalSpace.setCells(cells);
 
-        var cell = createCell(neighbourhoodFactory, cells, new Point(0, 0));
-        var cell1 = createCell(neighbourhoodFactory, cells, new Point(0, 0));
+        var cell = createCell(neighbourhoodFactory, new Point(0, 0));
+        var cell1 = createCell(neighbourhoodFactory, new Point(0, 0));
 
         cells.add(cell);
 
@@ -59,11 +59,11 @@ public class GameOfLifeTests {
 
         twoDimensionalSpace.setCells(cells);
 
-        var cell = createCell(neighbourhoodFactory, cells, new Point(0, 0));
-        var cell1 = createCell(neighbourhoodFactory, cells, new Point(1, 0));
-        var cell2 = createCell(neighbourhoodFactory, cells, new Point(2, 0));
-        var cell3 = createCell(neighbourhoodFactory, cells, new Point(1, 0));
-        var cell4 = createCell(neighbourhoodFactory, cells, new Point(1, 1));
+        var cell = createCell(neighbourhoodFactory, new Point(0, 0));
+        var cell1 = createCell(neighbourhoodFactory, new Point(1, 0));
+        var cell2 = createCell(neighbourhoodFactory, new Point(2, 0));
+        var cell3 = createCell(neighbourhoodFactory, new Point(1, 0));
+        var cell4 = createCell(neighbourhoodFactory, new Point(1, 1));
 
         cells.add(cell);
         cells.add(cell1);
@@ -83,20 +83,20 @@ public class GameOfLifeTests {
 
         twoDimensionalSpace.setCells(cells);
 
-        var cell = createCell(neighbourhoodFactory, cells, new Point(1, 0));
-        var cell1 = createCell(neighbourhoodFactory, cells, new Point(0, 1));
-        var cell2 = createCell(neighbourhoodFactory, cells, new Point(1, 1));
-        var cell3 = createCell(neighbourhoodFactory, cells, new Point(2, 1));
-        var cell4 = createCell(neighbourhoodFactory, cells, new Point(1, 2));
-        var cell5 = createCell(neighbourhoodFactory, cells, new Point(1, 1));
-        var cell6 = createCell(neighbourhoodFactory, cells, new Point(0, 0));
-        var cell7 = createCell(neighbourhoodFactory, cells, new Point(1, 0));
-        var cell8 = createCell(neighbourhoodFactory, cells, new Point(2, 0));
-        var cell9 = createCell(neighbourhoodFactory, cells, new Point(0, 1));
-        var cell10 = createCell(neighbourhoodFactory, cells, new Point(2, 1));
-        var cell11 = createCell(neighbourhoodFactory, cells, new Point(0, 2));
-        var cell12 = createCell(neighbourhoodFactory, cells, new Point(1, 2));
-        var cell13 = createCell(neighbourhoodFactory, cells, new Point(2, 2));
+        var cell = createCell(neighbourhoodFactory, new Point(1, 0));
+        var cell1 = createCell(neighbourhoodFactory, new Point(0, 1));
+        var cell2 = createCell(neighbourhoodFactory, new Point(1, 1));
+        var cell3 = createCell(neighbourhoodFactory, new Point(2, 1));
+        var cell4 = createCell(neighbourhoodFactory, new Point(1, 2));
+        var cell5 = createCell(neighbourhoodFactory, new Point(1, 1));
+        var cell6 = createCell(neighbourhoodFactory, new Point(0, 0));
+        var cell7 = createCell(neighbourhoodFactory, new Point(1, 0));
+        var cell8 = createCell(neighbourhoodFactory, new Point(2, 0));
+        var cell9 = createCell(neighbourhoodFactory, new Point(0, 1));
+        var cell10 = createCell(neighbourhoodFactory, new Point(2, 1));
+        var cell11 = createCell(neighbourhoodFactory, new Point(0, 2));
+        var cell12 = createCell(neighbourhoodFactory, new Point(1, 2));
+        var cell13 = createCell(neighbourhoodFactory, new Point(2, 2));
 
         cells.add(cell);
         cells.add(cell1);
@@ -126,10 +126,10 @@ public class GameOfLifeTests {
 
         twoDimensionalSpace.setCells(cells);
 
-        var cell = createCell(neighbourhoodFactory, cells, new Point(0, 1));
-        var cell1 = createCell(neighbourhoodFactory, cells, new Point(1, 1));
-        var cell2 = createCell(neighbourhoodFactory, cells, new Point(2, 1));
-        var cell3 = createCell(neighbourhoodFactory, cells, new Point(3, 1));
+        var cell = createCell(neighbourhoodFactory, new Point(0, 1));
+        var cell1 = createCell(neighbourhoodFactory, new Point(1, 1));
+        var cell2 = createCell(neighbourhoodFactory, new Point(2, 1));
+        var cell3 = createCell(neighbourhoodFactory, new Point(3, 1));
 
         cells.add(cell);
         cells.add(cell1);
@@ -139,12 +139,12 @@ public class GameOfLifeTests {
         twoDimensionalSpace.tick();
         twoDimensionalSpace.tick();
 
-        var cell4 = createCell(neighbourhoodFactory, cells, new Point(1, 0));
-        var cell5 = createCell(neighbourhoodFactory, cells, new Point(2, 0));
-        var cell6 = createCell(neighbourhoodFactory, cells, new Point(0, 1));
-        var cell7 = createCell(neighbourhoodFactory, cells, new Point(3, 1));
-        var cell8 = createCell(neighbourhoodFactory, cells, new Point(1, 2));
-        var cell9 = createCell(neighbourhoodFactory, cells, new Point(2, 2));
+        var cell4 = createCell(neighbourhoodFactory, new Point(1, 0));
+        var cell5 = createCell(neighbourhoodFactory, new Point(2, 0));
+        var cell6 = createCell(neighbourhoodFactory, new Point(0, 1));
+        var cell7 = createCell(neighbourhoodFactory, new Point(3, 1));
+        var cell8 = createCell(neighbourhoodFactory, new Point(1, 2));
+        var cell9 = createCell(neighbourhoodFactory, new Point(2, 2));
 
         assertTrue(cells.contains(cell4));
         assertTrue(cells.contains(cell5));
@@ -154,7 +154,7 @@ public class GameOfLifeTests {
         assertTrue(cells.contains(cell9));
     }
 
-    private Cell createCell(NeighbourhoodFactory neighbourhoodFactory, Cells cells, Point point) {
-        return new Cell(point, cells, neighbourhoodFactory.createFor(point));
+    private Cell createCell(NeighbourhoodFactory neighbourhoodFactory, Point point) {
+        return new Cell(point, neighbourhoodFactory.createFor(point));
     }
 }
