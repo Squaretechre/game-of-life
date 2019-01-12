@@ -9,7 +9,11 @@ class Cells implements CellObserver {
     private ArrayList<Cell> cellsToBeBorn;
 
     Cells(NeighbourhoodFactory neighbourhoodFactory) {
-        aliveCells = new ArrayList<>();
+        this(neighbourhoodFactory, new ArrayList<>());
+    }
+
+    Cells(NeighbourhoodFactory neighbourhoodFactory, ArrayList<Cell> livingCells) {
+        aliveCells = livingCells;
         deadCellsForRemoval = new ArrayList<>();
         cellsToBeBorn = new ArrayList<>();
         this.neighbourhoodFactory = neighbourhoodFactory;

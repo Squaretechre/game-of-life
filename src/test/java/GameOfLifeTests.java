@@ -1,6 +1,6 @@
 import org.junit.Test;
-
 import java.awt.*;
+import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -12,18 +12,21 @@ public class GameOfLifeTests {
         var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
         var neighbourhoodFactory = new NeighbourhoodFactory(twoDimensionalSpace);
 
-        var cells = new Cells(neighbourhoodFactory);
-
-        twoDimensionalSpace.setCells(cells);
-
         var cell = createCell(neighbourhoodFactory, new Point(0, 0));
         var cell1 = createCell(neighbourhoodFactory, new Point(0, 1));
         var cell2 = createCell(neighbourhoodFactory, new Point(1, 0));
         var cell3 = createCell(neighbourhoodFactory, new Point(1, 1));
 
-        cells.add(cell);
-        cells.add(cell1);
-        cells.add(cell2);
+        var livingCells = new ArrayList<Cell>() {{
+           add(cell);
+           add(cell1);
+           add(cell2);
+           add(cell3);
+        }};
+
+        var cells = new Cells(neighbourhoodFactory, livingCells);
+
+        twoDimensionalSpace.setCells(cells);
 
         twoDimensionalSpace.tick();
 
