@@ -20,14 +20,30 @@ class Cells implements CellObserver {
         birthNewCell(currentPoint);
     }
 
-    private void add(Cell cell) {
-        cell.registerObserver(this);
-        aliveCells.add(cell);
-    }
-
     @Override
     public void notifyOfDeath(Cell cell) {
         deadCellsForRemoval.add(cell);
+    }
+
+    void removeDeadCells() {
+        for (var cell : deadCellsForRemoval) {
+            remove(cell);
+        }
+    }
+
+    void birthNewCells() {
+        for (var cell : cellsToBeBorn) {
+            add(cell);
+        }
+    }
+
+    void addAt(Point point) {
+        aliveCells.add(createCellAt(point));
+    }
+
+    private void add(Cell cell) {
+        cell.registerObserver(this);
+        aliveCells.add(cell);
     }
 
     private void remove(Cell cell) {
@@ -46,22 +62,6 @@ class Cells implements CellObserver {
 
     private void birthNewCellAt(Point point) {
         cellsToBeBorn.add(new Cell(point, new Neighbourhood(point, this)));
-    }
-
-    void removeDeadCells() {
-        for (var cell : deadCellsForRemoval) {
-            remove(cell);
-        }
-    }
-
-    void birthNewCells() {
-        for (var cell : cellsToBeBorn) {
-            add(cell);
-        }
-    }
-
-    void addAt(Point point) {
-        aliveCells.add(createCellAt(point));
     }
 
     private Cell createCellAt(Point point) {
