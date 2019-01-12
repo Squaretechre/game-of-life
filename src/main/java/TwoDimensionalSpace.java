@@ -53,10 +53,6 @@ class TwoDimensionalSpace {
         livingCells.add(cell);
     }
 
-    public void registerDeath(Cell cell) {
-        deadCellsForRemoval.add(cell);
-    }
-
     public boolean contains(Cell cell) {
         return livingCells.contains(cell);
     }

@@ -63,4 +63,8 @@ class LivingCells {
     public void registerBirth(Cell cell, TwoDimensionalSpace twoDimensionalSpace) {
         twoDimensionalSpace.cellsToBeBorn.add(cell);
     }
+
+    public void registerDeath(Cell cell, TwoDimensionalSpace twoDimensionalSpace) {
+        twoDimensionalSpace.deadCellsForRemoval.add(cell);
+    }
 }
