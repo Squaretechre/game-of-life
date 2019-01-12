@@ -7,11 +7,6 @@ class Cell {
     private ArrayList<Point> neighbours;
     private TwoDimensionalSpace twoDimensionalSpace;
 
-    Cell(Point point) {
-        this.point = point;
-        this.neighbours = new Neighbourhood(point, twoDimensionalSpace).build();
-    }
-
     Cell(Point point, TwoDimensionalSpace twoDimensionalSpace) {
         this.point = point;
         this.twoDimensionalSpace = twoDimensionalSpace;
