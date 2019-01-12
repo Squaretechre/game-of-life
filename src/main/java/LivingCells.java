@@ -33,7 +33,11 @@ class LivingCells {
 
     void birthNewCell(Point currentPoint, TwoDimensionalSpace twoDimensionalSpace) {
         if (twoDimensionalSpace.totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
-            twoDimensionalSpace.birthNewCellAt(currentPoint);
+            twoDimensionalSpace.livingCells.birthNewCellAt(currentPoint, twoDimensionalSpace);
         }
+    }
+
+    public void birthNewCellAt(Point point, TwoDimensionalSpace twoDimensionalSpace) {
+        add(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
     }
 }

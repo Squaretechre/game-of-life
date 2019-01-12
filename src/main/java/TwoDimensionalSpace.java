@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 class TwoDimensionalSpace {
-    private final LivingCells livingCells;
+    final LivingCells livingCells;
     private ArrayList<Cell> deadCellsForRemoval;
     private final int xAxis;
     private final int yAxis;
@@ -50,10 +50,6 @@ class TwoDimensionalSpace {
         for (var cell : deadCellsForRemoval) {
             livingCells.remove(cell);
         }
-    }
-
-    public void birthNewCellAt(Point point) {
-        livingCells.add(new Cell(point, this, new Neighbourhood(point, this)));
     }
 
     public int totalCellsNeighbouring(Point point) {
