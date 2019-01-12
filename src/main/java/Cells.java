@@ -7,10 +7,7 @@ class Cells {
     private ArrayList<Cell> aliveCells;
     private ArrayList<Cell> deadCellsForRemoval;
     private ArrayList<Cell> cellsToBeBorn;
-
-    Cells() {
-        this(null);
-    }
+    private Neighbourhood neighbourhood;
 
     Cells(TwoDimensionalSpace twoDimensionalSpace) {
         this.twoDimensionalSpace = twoDimensionalSpace;
@@ -49,7 +46,12 @@ class Cells {
     }
 
     private void birthNewCellAt(Point point) {
-        registerBirth(new Cell(point, this, new Neighbourhood(point, twoDimensionalSpace)));
+        neighbourhood = createNeighbourhood(point);
+        registerBirth(new Cell(point, this, neighbourhood));
+    }
+
+    private Neighbourhood createNeighbourhood(Point point) {
+        return new Neighbourhood(point, twoDimensionalSpace);
     }
 
     void removeDeadCells() {
