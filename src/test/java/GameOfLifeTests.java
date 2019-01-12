@@ -19,7 +19,7 @@ public class GameOfLifeTests {
         cells.addAt(point2);
         cells.addAt(point3);
 
-        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 2, 2);
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, cells, 2, 2);
         twoDimensionalSpace.tick();
 
         assertTrue(cells.hasCellAt(point));
@@ -37,7 +37,7 @@ public class GameOfLifeTests {
         cells.addAt(point);
         cells.addAt(point1);
 
-        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 2, 2);
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, cells, 2, 2);
         twoDimensionalSpace.tick();
 
         assertFalse(cells.hasCellAt(point));
@@ -58,7 +58,7 @@ public class GameOfLifeTests {
         cells.addAt(point3);
         cells.addAt(point4);
 
-        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 3, 3);
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, cells, 3, 3);
         twoDimensionalSpace.tick();
 
         assertTrue(cells.hasCellAt(point3));
@@ -90,7 +90,7 @@ public class GameOfLifeTests {
         cells.addAt(point3);
         cells.addAt(point4);
 
-        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 3, 3);
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, cells, 3, 3);
         twoDimensionalSpace.tick();
 
         assertFalse(cells.hasCellAt(point5));
@@ -118,7 +118,7 @@ public class GameOfLifeTests {
         cells.addAt(point2);
         cells.addAt(point3);
 
-        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 4, 4);
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, cells, 4, 4);
         twoDimensionalSpace.tick();
         twoDimensionalSpace.tick();
 

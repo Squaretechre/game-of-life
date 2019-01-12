@@ -25,7 +25,7 @@ public class TextReporterTests {
 
         var textReporter = new TextReporter(cells, 4, 4);
 
-        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 4, 4);
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, cells, 4, 4);
         twoDimensionalSpace.tick();
         twoDimensionalSpace.tick();
 

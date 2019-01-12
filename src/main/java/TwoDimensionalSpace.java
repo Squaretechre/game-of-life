@@ -2,11 +2,13 @@ import java.awt.*;
 
 class TwoDimensionalSpace {
     private final Tickable tickable;
+    private final TickEndObserver tickEndObserver;
     private final int xAxis;
     private final int yAxis;
 
-    TwoDimensionalSpace(Tickable tickable, int x, int y) {
+    TwoDimensionalSpace(Tickable tickable, TickEndObserver tickEndObserver, int x, int y) {
         this.tickable = tickable;
+        this.tickEndObserver = tickEndObserver;
         this.xAxis = x;
         this.yAxis = y;
     }
@@ -17,6 +19,6 @@ class TwoDimensionalSpace {
                 tickable.tickFor(new Point(x, y));
             }
         }
-        tickable.finishedTicking();
+        tickEndObserver.finishedTicking();
     }
 }
