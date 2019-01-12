@@ -1,9 +1,9 @@
 import java.awt.*;
 
-class neighbourhoodFactory {
+class NeighbourhoodFactory {
     private final TwoDimensionalSpace twoDimensionalSpace;
 
-    neighbourhoodFactory(TwoDimensionalSpace twoDimensionalSpace) {
+    NeighbourhoodFactory(TwoDimensionalSpace twoDimensionalSpace) {
         this.twoDimensionalSpace = twoDimensionalSpace;
     }
 

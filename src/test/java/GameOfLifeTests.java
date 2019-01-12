@@ -10,7 +10,7 @@ public class GameOfLifeTests {
     @Test
     public void empty_cell_becomes_populated_when_it_has_three_neighbours() {
         var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
-        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
+        var cells = new Cells(new NeighbourhoodFactory(twoDimensionalSpace));
 
         twoDimensionalSpace.setCells(cells);
 
@@ -40,7 +40,7 @@ public class GameOfLifeTests {
     @Test
     public void cell_with_fewer_than_two_neighbours_dies() {
         var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
-        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
+        var cells = new Cells(new NeighbourhoodFactory(twoDimensionalSpace));
 
         twoDimensionalSpace.setCells(cells);
 
@@ -61,7 +61,7 @@ public class GameOfLifeTests {
     @Test
     public void cell_with_two_neighbours_lives_on() {
         var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
-        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
+        var cells = new Cells(new NeighbourhoodFactory(twoDimensionalSpace));
 
         twoDimensionalSpace.setCells(cells);
 
@@ -92,7 +92,7 @@ public class GameOfLifeTests {
     @Test
     public void cell_with_more_than_three_neighbours_dies() {
         var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
-        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
+        var cells = new Cells(new NeighbourhoodFactory(twoDimensionalSpace));
 
         twoDimensionalSpace.setCells(cells);
 
@@ -152,7 +152,8 @@ public class GameOfLifeTests {
     @Test
     public void two_generations_produces_correct_space() {
         var twoDimensionalSpace = new TwoDimensionalSpace(4, 4);
-        var cells = new Cells(new neighbourhoodFactory(twoDimensionalSpace));
+        var neighbourhoodFactory = new NeighbourhoodFactory(twoDimensionalSpace);
+        var cells = new Cells(neighbourhoodFactory);
 
         twoDimensionalSpace.setCells(cells);
 
@@ -161,10 +162,10 @@ public class GameOfLifeTests {
         final var point2 = new Point(2, 1);
         final var point3 = new Point(3, 1);
 
-        Cell cell = new Cell(point, cells, new Neighbourhood(point, twoDimensionalSpace));
-        Cell cell1 = new Cell(point1, cells, new Neighbourhood(point1, twoDimensionalSpace));
-        Cell cell2 = new Cell(point2, cells, new Neighbourhood(point2, twoDimensionalSpace));
-        Cell cell3 = new Cell(point3, cells, new Neighbourhood(point3, twoDimensionalSpace));
+        Cell cell = new Cell(point, cells, neighbourhoodFactory.createFor(point));
+        Cell cell1 = new Cell(point1, cells, neighbourhoodFactory.createFor(point1));
+        Cell cell2 = new Cell(point2, cells, neighbourhoodFactory.createFor(point2));
+        Cell cell3 = new Cell(point3, cells, neighbourhoodFactory.createFor(point3));
 
         cells.add(cell);
         cells.add(cell1);
@@ -181,12 +182,12 @@ public class GameOfLifeTests {
         final var point8 = new Point(1, 2);
         final var point9 = new Point(2, 2);
 
-        Cell cell4 = new Cell(point4, cells, new Neighbourhood(point4, twoDimensionalSpace));
-        Cell cell5 = new Cell(point5, cells, new Neighbourhood(point5, twoDimensionalSpace));
-        Cell cell6 = new Cell(point6, cells, new Neighbourhood(point6, twoDimensionalSpace));
-        Cell cell7 = new Cell(point7, cells, new Neighbourhood(point7, twoDimensionalSpace));
-        Cell cell8 = new Cell(point8, cells, new Neighbourhood(point8, twoDimensionalSpace));
-        Cell cell9 = new Cell(point9, cells, new Neighbourhood(point9, twoDimensionalSpace));
+        Cell cell4 = new Cell(point4, cells, neighbourhoodFactory.createFor(point4));
+        Cell cell5 = new Cell(point5, cells, neighbourhoodFactory.createFor(point5));
+        Cell cell6 = new Cell(point6, cells, neighbourhoodFactory.createFor(point6));
+        Cell cell7 = new Cell(point7, cells, neighbourhoodFactory.createFor(point7));
+        Cell cell8 = new Cell(point8, cells, neighbourhoodFactory.createFor(point8));
+        Cell cell9 = new Cell(point9, cells, neighbourhoodFactory.createFor(point9));
 
         assertTrue(cells.contains(cell4));
         assertTrue(cells.contains(cell5));

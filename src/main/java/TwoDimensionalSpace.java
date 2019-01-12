@@ -6,7 +6,7 @@ class TwoDimensionalSpace {
     private final int yAxis;
 
     TwoDimensionalSpace(int x, int y) {
-        this.cells = new Cells(new neighbourhoodFactory(this));
+        this.cells = new Cells(new NeighbourhoodFactory(this));
         this.xAxis = x;
         this.yAxis = y;
     }

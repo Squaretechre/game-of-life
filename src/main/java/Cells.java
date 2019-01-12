@@ -3,12 +3,12 @@ import java.util.ArrayList;
 
 class Cells {
     private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
-    private neighbourhoodFactory neighbourhoodFactory;
+    private NeighbourhoodFactory neighbourhoodFactory;
     private ArrayList<Cell> aliveCells;
     private ArrayList<Cell> deadCellsForRemoval;
     private ArrayList<Cell> cellsToBeBorn;
 
-    Cells(neighbourhoodFactory neighbourhoodFactory) {
+    Cells(NeighbourhoodFactory neighbourhoodFactory) {
         aliveCells = new ArrayList<>();
         deadCellsForRemoval = new ArrayList<>();
         cellsToBeBorn = new ArrayList<>();
