@@ -3,20 +3,14 @@ import java.util.ArrayList;
 
 class Cells implements CellObserver {
     private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
-    private NeighbourhoodFactory neighbourhoodFactory;
     private ArrayList<Cell> aliveCells;
     private ArrayList<Cell> deadCellsForRemoval;
     private ArrayList<Cell> cellsToBeBorn;
 
-    Cells(NeighbourhoodFactory neighbourhoodFactory) {
-        this(neighbourhoodFactory, new ArrayList<>());
-    }
-
-    Cells(NeighbourhoodFactory neighbourhoodFactory, ArrayList<Cell> livingCells) {
-        aliveCells = livingCells;
+    Cells() {
+        aliveCells = new ArrayList<>();
         deadCellsForRemoval = new ArrayList<>();
         cellsToBeBorn = new ArrayList<>();
-        this.neighbourhoodFactory = neighbourhoodFactory;
         for (Cell cell : aliveCells) {
             cell.registerObserver(this);
         }
@@ -27,10 +21,6 @@ class Cells implements CellObserver {
             cell.tick(currentPoint);
         }
         birthNewCell(currentPoint);
-    }
-
-    boolean contains(Cell cell) {
-        return aliveCells.contains(cell);
     }
 
     private void add(Cell cell) {
@@ -58,7 +48,7 @@ class Cells implements CellObserver {
     }
 
     private void birthNewCellAt(Point point) {
-        cellsToBeBorn.add(new Cell(point, neighbourhoodFactory.createFor(point)));
+        cellsToBeBorn.add(new Cell(point, new Neighbourhood(point, this)));
     }
 
     void removeDeadCells() {
@@ -71,5 +61,19 @@ class Cells implements CellObserver {
         for (var cell : cellsToBeBorn) {
             add(cell);
         }
+    }
+
+    void addAt(Point point) {
+        aliveCells.add(createCellAt(point));
+    }
+
+    private Cell createCellAt(Point point) {
+        var cell = new Cell(point, new Neighbourhood(point, this));
+        cell.registerObserver(this);
+        return cell;
+    }
+
+    boolean hasCellAt(Point point) {
+        return aliveCells.contains(new Cell(point, new Neighbourhood(point, this)));
     }
 }

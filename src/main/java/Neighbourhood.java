@@ -4,17 +4,17 @@ import java.util.stream.Stream;
 
 class Neighbourhood {
     private final Point point;
-    private final TwoDimensionalSpace twoDimensionalSpace;
+    private final Cells cells;
     private final ArrayList<Point> neighbours;
 
-    Neighbourhood(Point point, TwoDimensionalSpace twoDimensionalSpace) {
+    Neighbourhood(Point point, Cells cells) {
         this.point = point;
-        this.twoDimensionalSpace = twoDimensionalSpace;
+        this.cells = cells;
         this.neighbours = build();
     }
 
     int totalNeighbours() {
-        return (int) allNeighbouringPoints().filter(twoDimensionalSpace::cellExistsAt).count();
+        return (int) allNeighbouringPoints().filter(cells::hasCellAt).count();
     }
 
     boolean hasNeighbourAt(Point point) {

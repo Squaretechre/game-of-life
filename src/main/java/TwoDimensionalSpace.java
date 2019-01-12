@@ -6,7 +6,7 @@ class TwoDimensionalSpace {
     private final int yAxis;
 
     TwoDimensionalSpace(int x, int y) {
-        this.cells = new Cells(new NeighbourhoodFactory(this));
+        this.cells = new Cells();
         this.xAxis = x;
         this.yAxis = y;
     }
@@ -15,7 +15,6 @@ class TwoDimensionalSpace {
         calculateNextGenerationOfCells();
         cells.removeDeadCells();
         cells.birthNewCells();
-        printSpace();
     }
 
     private void calculateNextGenerationOfCells() {
@@ -30,27 +29,7 @@ class TwoDimensionalSpace {
         return new Point(x, y);
     }
 
-    boolean cellExistsAt(Point point) {
-        return cells.contains(new Cell(point, new Neighbourhood(point, this)));
-    }
-
     void setCells(Cells cells) {
         this.cells = cells;
-    }
-
-    private void printSpace() {
-        String grid = "";
-        for (var y = 0; y < yAxis; y++) {
-            for (var x = 0; x < xAxis; x++) {
-                if (cellExistsAt(currentPoint(x, y))) {
-                    grid += "x";
-                } else {
-                    grid += ".";
-                }
-            }
-            grid += "\n";
-        }
-
-        System.out.println(grid);
     }
 }
