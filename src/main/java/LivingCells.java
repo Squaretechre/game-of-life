@@ -53,4 +53,10 @@ class LivingCells {
             remove(cell);
         }
     }
+
+    public void birthNewCells(TwoDimensionalSpace twoDimensionalSpace) {
+        for (var cell : twoDimensionalSpace.cellsToBeBorn) {
+            add(cell);
+        }
+    }
 }

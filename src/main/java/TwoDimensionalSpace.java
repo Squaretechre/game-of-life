@@ -19,7 +19,7 @@ class TwoDimensionalSpace {
     void tick() {
         calculateNextGenerationOfCells();
         livingCells.removeDeadCells(this);
-        birthNewCells();
+        livingCells.birthNewCells(this);
         printSpace();
     }
 
@@ -69,9 +69,4 @@ class TwoDimensionalSpace {
         return livingCells.contains(new Cell(point, this, new Neighbourhood(point, this)));
     }
 
-    public void birthNewCells() {
-        for (var cell : cellsToBeBorn) {
-            livingCells.add(cell);
-        }
-    }
 }
