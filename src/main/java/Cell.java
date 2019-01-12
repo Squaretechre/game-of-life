@@ -1,10 +1,12 @@
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Objects;
 
 class Cell {
     private final Point pointInSpace;
     private final Neighbourhood neighbourhood;
     private final Cells cells;
+    private ArrayList<CellObserver> observers;
 
     Cell(Point point, Neighbourhood neighbourhood) {
         this(point, null, neighbourhood);
@@ -20,6 +22,10 @@ class Cell {
         if (thisCellIsLocatedAt(currentTickPoint) && shouldDie()) {
             cells.notifyOfDeath(this);
         }
+    }
+
+    void registerObserver(CellObserver observer) {
+        observers.add(observer);
     }
 
     boolean neighboursCellAt(Point point) {
@@ -54,4 +60,5 @@ class Cell {
     public int hashCode() {
         return Objects.hash(pointInSpace);
     }
+
 }
