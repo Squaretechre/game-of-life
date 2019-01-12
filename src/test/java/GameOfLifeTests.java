@@ -8,7 +8,6 @@ public class GameOfLifeTests {
 
     @Test
     public void empty_cell_becomes_populated_when_it_has_three_neighbours() {
-
         Point point = new Point(0, 0);
         Point point1 = new Point(0, 1);
         Point point2 = new Point(1, 0);
@@ -32,8 +31,6 @@ public class GameOfLifeTests {
 
     @Test
     public void cell_with_fewer_than_two_neighbours_dies() {
-        var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
-
         Point point = new Point(0, 0);
         Point point1 = new Point(1, 0);
 
@@ -41,6 +38,7 @@ public class GameOfLifeTests {
         cells.addAt(point);
         cells.addAt(point1);
 
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 2, 2);
         twoDimensionalSpace.setCells(cells);
         twoDimensionalSpace.tick();
 
@@ -49,8 +47,6 @@ public class GameOfLifeTests {
 
     @Test
     public void cell_with_two_neighbours_lives_on() {
-        var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
-
         Point point = new Point(0, 0);
         Point point1 = new Point(1, 0);
         Point point2 = new Point(2, 0);
@@ -64,6 +60,7 @@ public class GameOfLifeTests {
         cells.addAt(point3);
         cells.addAt(point4);
 
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 3, 3);
         twoDimensionalSpace.setCells(cells);
         twoDimensionalSpace.tick();
 
@@ -73,8 +70,6 @@ public class GameOfLifeTests {
 
     @Test
     public void cell_with_more_than_three_neighbours_dies() {
-        var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
-
         Point point = new Point(1, 0);
         Point point1 = new Point(0, 1);
         Point point2 = new Point(1, 1);
@@ -98,6 +93,7 @@ public class GameOfLifeTests {
         cells.addAt(point3);
         cells.addAt(point4);
 
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 3, 3);
         twoDimensionalSpace.setCells(cells);
         twoDimensionalSpace.tick();
 
@@ -115,8 +111,6 @@ public class GameOfLifeTests {
 
     @Test
     public void two_generations_produces_correct_space() {
-        var twoDimensionalSpace = new TwoDimensionalSpace(4, 4);
-
         Point point = new Point(0, 1);
         Point point1 = new Point(1, 1);
         Point point2 = new Point(2, 1);
@@ -128,6 +122,7 @@ public class GameOfLifeTests {
         cells.addAt(point2);
         cells.addAt(point3);
 
+        var twoDimensionalSpace = new TwoDimensionalSpace(cells, 4, 4);
         twoDimensionalSpace.setCells(cells);
         twoDimensionalSpace.tick();
         twoDimensionalSpace.tick();
