@@ -19,18 +19,18 @@ class Cell {
         }
     }
 
-    private void notifyObserversOfDeath() {
-        for (CellObserver observer : observers) {
-           observer.notifyOfDeath(this);
-        }
-    }
-
     void registerObserver(CellObserver observer) {
         observers.add(observer);
     }
 
     boolean neighboursCellAt(Point point) {
         return neighbourhood.hasNeighbourAt(point);
+    }
+
+    private void notifyObserversOfDeath() {
+        for (CellObserver observer : observers) {
+           observer.notifyOfDeath(this);
+        }
     }
 
     private boolean thisCellIsLocatedAt(Point currentPoint) {
