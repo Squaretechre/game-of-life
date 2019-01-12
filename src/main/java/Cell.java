@@ -4,21 +4,24 @@ import java.util.Objects;
 
 class Cell {
     private final Point point;
-    private final ArrayList<Point> neighbours;
+    private ArrayList<Point> neighbours;
     private TwoDimensionalSpace twoDimensionalSpace;
 
     Cell(Point point) {
         this.point = point;
-        this.neighbours = new ArrayList<>();
+        this.neighbours = buildNeighbours(point);
+    }
 
-        Point top = new Point(point.x, point.y - 1);
-        Point topLeft = new Point(point.x - 1, point.y - 1);
-        Point topRight = new Point(point.x + 1, point.y - 1);
-        Point left = new Point(point.x - 1, point.y);
-        Point right = new Point(point.x + 1, point.y);
-        Point bottom = new Point(point.x, point.y + 1);
-        Point bottomLeft = new Point(point.x - 1, point.y + 1);
-        Point bottomRight = new Point(point.x + 1, point.y + 1);
+    private ArrayList<Point> buildNeighbours(Point point) {
+        var neighbours = new ArrayList<Point>();
+        var top = new Point(point.x, point.y - 1);
+        var topLeft = new Point(point.x - 1, point.y - 1);
+        var topRight = new Point(point.x + 1, point.y - 1);
+        var left = new Point(point.x - 1, point.y);
+        var right = new Point(point.x + 1, point.y);
+        var bottom = new Point(point.x, point.y + 1);
+        var bottomLeft = new Point(point.x - 1, point.y + 1);
+        var bottomRight = new Point(point.x + 1, point.y + 1);
 
         neighbours.add(top);
         neighbours.add(topLeft);
@@ -28,6 +31,7 @@ class Cell {
         neighbours.add(bottom);
         neighbours.add(bottomLeft);
         neighbours.add(bottomRight);
+        return neighbours;
     }
 
     void registerSpace(TwoDimensionalSpace twoDimensionalSpace) {
@@ -57,8 +61,7 @@ class Cell {
     }
 
     boolean neighbours(Point point) {
-        System.out.println(point);
-        for (Point neighbour : neighbours) {
+        for (var neighbour : neighbours) {
             if (neighbour.equals(point)) return true;
         }
         return false;
@@ -68,7 +71,7 @@ class Cell {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cell cell = (Cell) o;
+        var cell = (Cell) o;
         return Objects.equals(point, cell.point);
     }
 
