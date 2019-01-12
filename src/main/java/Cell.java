@@ -30,11 +30,7 @@ class Cell {
     }
 
     private boolean dieFromOvercrowding() {
-        return totalNeighbours() > 3;
-    }
-
-    public int totalNeighbours() {
-        return (int) neighbours.stream().filter(n -> twoDimensionalSpace.cellExistsAt(n)).count();
+        return neighbourhood.totalNeighbours() > 3;
     }
 
     boolean neighbours(Point point) {
