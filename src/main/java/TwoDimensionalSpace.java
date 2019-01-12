@@ -6,10 +6,6 @@ class TwoDimensionalSpace {
     private final int xAxis;
     private final int yAxis;
 
-    TwoDimensionalSpace(int x, int y) {
-        this(new Cells(), x, y);
-    }
-
     TwoDimensionalSpace(Tickable tickable, int x, int y) {
         this.tickable = tickable;
         this.xAxis = x;
