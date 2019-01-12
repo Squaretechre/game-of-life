@@ -48,4 +48,15 @@ class Cell {
     public int hashCode() {
         return Objects.hash(point);
     }
+
+    @Override
+    public String toString() {
+        return "Cell{" +
+                "point=" + point +
+                '}';
+    }
+
+    boolean isAtPoint(Point currentPoint) {
+        return point.equals(currentPoint);
+    }
 }

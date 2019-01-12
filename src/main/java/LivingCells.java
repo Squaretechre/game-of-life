@@ -41,6 +41,10 @@ class LivingCells {
     }
 
     private void birthNewCellAt(Point point) {
-        add(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
+        twoDimensionalSpace.registerBirth(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
+    }
+
+    boolean hasCellAt(Point currentPoint) {
+        return aliveCells.stream().anyMatch(c -> c.isAtPoint(currentPoint));
     }
 }

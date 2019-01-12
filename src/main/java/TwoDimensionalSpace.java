@@ -4,12 +4,14 @@ import java.util.ArrayList;
 class TwoDimensionalSpace {
     private final LivingCells livingCells;
     private ArrayList<Cell> deadCellsForRemoval;
+    private ArrayList<Cell> cellsToBeBorth;
     private final int xAxis;
     private final int yAxis;
 
     TwoDimensionalSpace(int x, int y) {
         this.livingCells = new LivingCells(this);
         this.deadCellsForRemoval = new ArrayList<>();
+        this.cellsToBeBorth = new ArrayList<>();
         this.xAxis = x;
         this.yAxis = y;
     }
@@ -17,16 +19,35 @@ class TwoDimensionalSpace {
     void tick() {
         calculateNextGenerationOfCells();
         removeDeadCells();
+        birthNewCells();
+        printSpace();
     }
+
 
     private void calculateNextGenerationOfCells() {
         for (var y = 0; y < yAxis; y++) {
             for (var x = 0; x < xAxis; x++) {
                 var currentPoint = new Point(x, y);
-
                 livingCells.tickFor(currentPoint);
             }
         }
+    }
+
+    private void printSpace() {
+        String grid = "";
+        for (var y = 0; y < yAxis; y++) {
+            for (var x = 0; x < xAxis; x++) {
+                var currentPoint = new Point(x, y);
+                if (livingCells.hasCellAt(currentPoint)) {
+                    grid += "x";
+                } else {
+                    grid += ".";
+                }
+            }
+            grid += "\n";
+        }
+
+        System.out.println(grid);
     }
 
     void registerCell(Cell cell) {
@@ -35,6 +56,10 @@ class TwoDimensionalSpace {
 
     void registerDeath(Cell cell) {
         deadCellsForRemoval.add(cell);
+    }
+
+    void registerBirth(Cell cell) {
+        cellsToBeBorth.add(cell);
     }
 
     boolean contains(Cell cell) {
@@ -48,6 +73,12 @@ class TwoDimensionalSpace {
     private void removeDeadCells() {
         for (var cell : deadCellsForRemoval) {
             livingCells.remove(cell);
+        }
+    }
+
+    private void birthNewCells() {
+        for (var cell : cellsToBeBorth) {
+            livingCells.add(cell);
         }
     }
 }
