@@ -11,9 +11,6 @@ class Cells implements CellObserver {
         aliveCells = new ArrayList<>();
         deadCellsForRemoval = new ArrayList<>();
         cellsToBeBorn = new ArrayList<>();
-        for (Cell cell : aliveCells) {
-            cell.registerObserver(this);
-        }
     }
 
     void tickFor(Point currentPoint) {
