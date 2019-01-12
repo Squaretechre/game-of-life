@@ -12,8 +12,8 @@ class Cell {
         this.neighbourhood = neighbourhood;
     }
 
-    void tick(Point currentPoint) {
-        if (thisCellIsLocatedAt(currentPoint) && shouldDie()) {
+    void tick(Point currentTickPoint) {
+        if (thisCellIsLocatedAt(currentTickPoint) && shouldDie()) {
             twoDimensionalSpace.cells.registerDeath(this);
         }
     }
