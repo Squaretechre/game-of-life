@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-class Cells implements CellObserver {
+class Cells implements CellObserver, Tickable {
     private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
     private ArrayList<Cell> aliveCells;
     private ArrayList<Cell> deadCellsForRemoval;
@@ -13,7 +13,8 @@ class Cells implements CellObserver {
         cellsToBeBorn = new ArrayList<>();
     }
 
-    void tickFor(Point currentPoint) {
+    @Override
+    public void tickFor(Point currentPoint) {
         for (Cell cell : aliveCells) {
             cell.tick(currentPoint);
         }
