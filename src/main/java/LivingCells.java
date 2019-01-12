@@ -47,4 +47,10 @@ class LivingCells {
     boolean hasCellAt(Point currentPoint) {
         return aliveCells.stream().anyMatch(c -> c.isAtPoint(currentPoint));
     }
+
+    public void removeDeadCells(TwoDimensionalSpace twoDimensionalSpace) {
+        for (var cell : twoDimensionalSpace.deadCellsForRemoval) {
+            remove(cell);
+        }
+    }
 }

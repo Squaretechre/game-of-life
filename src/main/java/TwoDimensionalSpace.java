@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 class TwoDimensionalSpace {
     private final LivingCells livingCells;
-    private ArrayList<Cell> deadCellsForRemoval;
-    private ArrayList<Cell> cellsToBeBorn;
+    public ArrayList<Cell> deadCellsForRemoval;
+    public ArrayList<Cell> cellsToBeBorn;
     private final int xAxis;
     private final int yAxis;
 
@@ -18,7 +18,7 @@ class TwoDimensionalSpace {
 
     void tick() {
         calculateNextGenerationOfCells();
-        removeDeadCells();
+        livingCells.removeDeadCells(this);
         birthNewCells();
         printSpace();
     }
@@ -49,33 +49,27 @@ class TwoDimensionalSpace {
         System.out.println(grid);
     }
 
-    void registerCell(Cell cell) {
+    public void registerCell(Cell cell) {
         livingCells.add(cell);
     }
 
-    void registerDeath(Cell cell) {
+    public void registerDeath(Cell cell) {
         deadCellsForRemoval.add(cell);
     }
 
-    void registerBirth(Cell cell) {
+    public void registerBirth(Cell cell) {
         cellsToBeBorn.add(cell);
     }
 
-    boolean contains(Cell cell) {
+    public boolean contains(Cell cell) {
         return livingCells.contains(cell);
     }
 
-    boolean cellExistsAt(Point point) {
+    public boolean cellExistsAt(Point point) {
         return livingCells.contains(new Cell(point, this, new Neighbourhood(point, this)));
     }
 
-    private void removeDeadCells() {
-        for (var cell : deadCellsForRemoval) {
-            livingCells.remove(cell);
-        }
-    }
-
-    private void birthNewCells() {
+    public void birthNewCells() {
         for (var cell : cellsToBeBorn) {
             livingCells.add(cell);
         }
