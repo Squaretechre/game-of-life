@@ -11,7 +11,7 @@ class Cell {
 
     Cell(Point point) {
         this.point = point;
-        this.neighbours = new Neighbourhood(point).buildNeighbours();
+        this.neighbours = new Neighbourhood(point).build();
     }
 
     void registerSpace(TwoDimensionalSpace twoDimensionalSpace) {

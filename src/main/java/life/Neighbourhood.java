@@ -14,7 +14,7 @@ public class Neighbourhood {
         return point;
     }
 
-    public ArrayList<Point> buildNeighbours() {
+    public ArrayList<Point> build() {
         var neighbours = new ArrayList<Point>();
         var top = new Point(getPoint().x, getPoint().y - 1);
         var topLeft = new Point(getPoint().x - 1, getPoint().y - 1);
