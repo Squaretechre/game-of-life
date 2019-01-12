@@ -33,7 +33,7 @@ class Cells implements CellObserver {
         return aliveCells.contains(cell);
     }
 
-    void add(Cell cell) {
+    private void add(Cell cell) {
         cell.registerObserver(this);
         aliveCells.add(cell);
     }
