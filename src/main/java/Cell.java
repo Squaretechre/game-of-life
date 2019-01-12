@@ -50,8 +50,4 @@ class Cell {
     public int hashCode() {
         return Objects.hash(pointInSpace);
     }
-
-    boolean isAtPoint(Point currentPoint) {
-        return pointInSpace.equals(currentPoint);
-    }
 }

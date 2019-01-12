@@ -48,10 +48,6 @@ class Cells {
         registerBirth(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
     }
 
-    boolean hasCellAt(Point currentPoint) {
-        return aliveCells.stream().anyMatch(c -> c.isAtPoint(currentPoint));
-    }
-
     void removeDeadCells() {
         for (var cell : deadCellsForRemoval) {
             remove(cell);
