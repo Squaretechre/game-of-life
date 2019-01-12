@@ -32,12 +32,12 @@ class LivingCells {
     }
 
     void birthNewCell(Point currentPoint, TwoDimensionalSpace twoDimensionalSpace) {
-        if (twoDimensionalSpace.totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
-            twoDimensionalSpace.livingCells.birthNewCellAt(currentPoint, twoDimensionalSpace);
+        if (totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
+            birthNewCellAt(currentPoint, twoDimensionalSpace);
         }
     }
 
-    public void birthNewCellAt(Point point, TwoDimensionalSpace twoDimensionalSpace) {
+    private void birthNewCellAt(Point point, TwoDimensionalSpace twoDimensionalSpace) {
         add(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
     }
 }
