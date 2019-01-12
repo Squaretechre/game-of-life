@@ -5,10 +5,14 @@ class LivingCells {
     private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
     private final TwoDimensionalSpace twoDimensionalSpace;
     private ArrayList<Cell> aliveCells;
+    public ArrayList<Cell> deadCellsForRemoval;
+    public ArrayList<Cell> cellsToBeBorn;
 
     LivingCells(TwoDimensionalSpace twoDimensionalSpace) {
         this.twoDimensionalSpace = twoDimensionalSpace;
         aliveCells = new ArrayList<>();
+        deadCellsForRemoval = new ArrayList<>();
+        cellsToBeBorn = new ArrayList<>();
     }
 
     void add(Cell cell) {
@@ -61,10 +65,12 @@ class LivingCells {
     }
 
     public void registerBirth(Cell cell, TwoDimensionalSpace twoDimensionalSpace) {
+        cellsToBeBorn.add(cell);
         twoDimensionalSpace.cellsToBeBorn.add(cell);
     }
 
     public void registerDeath(Cell cell, TwoDimensionalSpace twoDimensionalSpace) {
+        deadCellsForRemoval.add(cell);
         twoDimensionalSpace.deadCellsForRemoval.add(cell);
     }
 }
