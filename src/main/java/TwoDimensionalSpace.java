@@ -13,12 +13,12 @@ class TwoDimensionalSpace {
     }
 
     void tick() {
-        calculateNextGenerationOfCells(cells);
+        calculateNextGenerationOfCells();
         cells.removeDeadCells();
         cells.birthNewCells();
     }
 
-    private void calculateNextGenerationOfCells(Tickable tickable) {
+    private void calculateNextGenerationOfCells() {
         for (var y = 0; y < yAxis; y++) {
             for (var x = 0; x < xAxis; x++) {
                 tickable.tickFor(currentPoint(x, y));
