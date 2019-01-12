@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 class TwoDimensionalSpace {
-    private final LivingCells livingCells;
+    final LivingCells livingCells;
     public ArrayList<Cell> deadCellsForRemoval;
     public ArrayList<Cell> cellsToBeBorn;
     private final int xAxis;
@@ -57,10 +57,6 @@ class TwoDimensionalSpace {
         deadCellsForRemoval.add(cell);
     }
 
-    public void registerBirth(Cell cell) {
-        cellsToBeBorn.add(cell);
-    }
-
     public boolean contains(Cell cell) {
         return livingCells.contains(cell);
     }
@@ -68,5 +64,4 @@ class TwoDimensionalSpace {
     public boolean cellExistsAt(Point point) {
         return livingCells.contains(new Cell(point, this, new Neighbourhood(point, this)));
     }
-
 }

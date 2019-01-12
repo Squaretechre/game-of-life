@@ -41,7 +41,7 @@ class LivingCells {
     }
 
     private void birthNewCellAt(Point point) {
-        twoDimensionalSpace.registerBirth(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
+        twoDimensionalSpace.livingCells.registerBirth(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)), twoDimensionalSpace);
     }
 
     boolean hasCellAt(Point currentPoint) {
@@ -58,5 +58,9 @@ class LivingCells {
         for (var cell : twoDimensionalSpace.cellsToBeBorn) {
             add(cell);
         }
+    }
+
+    public void registerBirth(Cell cell, TwoDimensionalSpace twoDimensionalSpace) {
+        twoDimensionalSpace.cellsToBeBorn.add(cell);
     }
 }
