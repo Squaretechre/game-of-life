@@ -18,7 +18,7 @@ class Cell {
 
     void tick(Point currentTickPoint) {
         if (thisCellIsLocatedAt(currentTickPoint) && shouldDie()) {
-            cells.registerDeath(this);
+            cells.notifyOfDeath(this);
         }
     }
 

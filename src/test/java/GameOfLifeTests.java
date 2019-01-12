@@ -11,6 +11,7 @@ public class GameOfLifeTests {
     public void empty_cell_becomes_populated_when_it_has_three_neighbours() {
         var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
         var neighbourhoodFactory = new NeighbourhoodFactory(twoDimensionalSpace);
+
         var cells = new Cells(neighbourhoodFactory);
 
         twoDimensionalSpace.setCells(cells);

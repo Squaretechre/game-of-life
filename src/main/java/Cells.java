@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-class Cells {
+class Cells implements CellObserver {
     private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
     private NeighbourhoodFactory neighbourhoodFactory;
     private ArrayList<Cell> aliveCells;
@@ -60,7 +60,8 @@ class Cells {
         }
     }
 
-    void registerDeath(Cell cell) {
+    @Override
+    public void notifyOfDeath(Cell cell) {
         deadCellsForRemoval.add(cell);
     }
 }

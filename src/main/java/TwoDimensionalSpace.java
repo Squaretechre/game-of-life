@@ -18,22 +18,6 @@ class TwoDimensionalSpace {
         printSpace();
     }
 
-    private void printSpace() {
-        String grid = "";
-        for (var y = 0; y < yAxis; y++) {
-            for (var x = 0; x < xAxis; x++) {
-                if (cellExistsAt(currentPoint(x, y))) {
-                    grid += "x";
-                } else {
-                    grid += ".";
-                }
-            }
-            grid += "\n";
-        }
-
-        System.out.println(grid);
-    }
-
     private void calculateNextGenerationOfCells() {
         for (var y = 0; y < yAxis; y++) {
             for (var x = 0; x < xAxis; x++) {
@@ -52,5 +36,21 @@ class TwoDimensionalSpace {
 
     void setCells(Cells cells) {
         this.cells = cells;
+    }
+
+    private void printSpace() {
+        String grid = "";
+        for (var y = 0; y < yAxis; y++) {
+            for (var x = 0; x < xAxis; x++) {
+                if (cellExistsAt(currentPoint(x, y))) {
+                    grid += "x";
+                } else {
+                    grid += ".";
+                }
+            }
+            grid += "\n";
+        }
+
+        System.out.println(grid);
     }
 }
