@@ -31,10 +31,10 @@ public class GameOfLifeTests {
 
         Cell cell3 = new Cell(point3, twoDimensionalSpace, new Neighbourhood(point3, twoDimensionalSpace));
 
-        assertTrue(twoDimensionalSpace.contains(cell));
-        assertTrue(twoDimensionalSpace.contains(cell1));
-        assertTrue(twoDimensionalSpace.contains(cell2));
-        assertTrue(twoDimensionalSpace.contains(cell3));
+        assertTrue(cells.contains(cell));
+        assertTrue(cells.contains(cell1));
+        assertTrue(cells.contains(cell2));
+        assertTrue(cells.contains(cell3));
     }
 
     @Test
