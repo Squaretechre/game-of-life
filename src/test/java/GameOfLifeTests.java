@@ -27,21 +27,29 @@ public class GameOfLifeTests {
     @Test
     public void cell_with_fewer_than_two_neighbours_dies() {
         var twoDimensionalSpace = new TwoDimensionalSpace(2, 2);
+        var cells = new Cells(twoDimensionalSpace);
+
+        twoDimensionalSpace.setCells(cells);
+
         final var point = new Point(0, 0);
         final var point1 = new Point(0, 0);
 
-        twoDimensionalSpace.registerCell(new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace)));
+        Cell cell = new Cell(point, twoDimensionalSpace, new Neighbourhood(point, twoDimensionalSpace));
+
+        cells.add(cell);
 
         twoDimensionalSpace.tick();
 
-        assertFalse(twoDimensionalSpace.contains(new Cell(point1, twoDimensionalSpace, new Neighbourhood(point1, twoDimensionalSpace))));
+        Cell cell1 = new Cell(point1, twoDimensionalSpace, new Neighbourhood(point1, twoDimensionalSpace));
+
+        assertFalse(cells.contains(cell1));
     }
 
     @Test
     public void cell_with_two_neighbours_lives_on() {
         var twoDimensionalSpace = new TwoDimensionalSpace(3, 3);
         var cells = new Cells(twoDimensionalSpace);
-        
+
         twoDimensionalSpace.setCells(cells);
 
         final var point = new Point(0, 0);
