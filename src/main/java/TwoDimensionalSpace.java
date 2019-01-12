@@ -25,7 +25,6 @@ class TwoDimensionalSpace {
                 var currentPoint = new Point(x, y);
 
                 livingCells.tickFor(currentPoint);
-                livingCells.birthNewCell(currentPoint);
             }
         }
     }

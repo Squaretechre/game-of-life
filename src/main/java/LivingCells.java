@@ -27,9 +27,10 @@ class LivingCells {
         for (Cell cell : aliveCells) {
             cell.tick(currentPoint);
         }
+        birthNewCell(currentPoint);
     }
 
-    void birthNewCell(Point currentPoint) {
+    private void birthNewCell(Point currentPoint) {
         if (totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
             birthNewCellAt(currentPoint);
         }
