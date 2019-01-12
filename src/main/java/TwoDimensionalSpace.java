@@ -27,7 +27,6 @@ class TwoDimensionalSpace {
 
                 if (cellExistsAt(currentPoint)) {
                     cellAt(currentPoint).tick();
-                    continue;
                 }
 
                 if (totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
