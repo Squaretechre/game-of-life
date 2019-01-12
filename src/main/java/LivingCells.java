@@ -29,4 +29,10 @@ class LivingCells {
             cell.tick(currentPoint);
         }
     }
+
+    public void birthNewCell(Point currentPoint, TwoDimensionalSpace twoDimensionalSpace) {
+        if (twoDimensionalSpace.totalCellsNeighbouring(currentPoint) == TwoDimensionalSpace.NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
+            twoDimensionalSpace.birthNewCellAt(currentPoint);
+        }
+    }
 }

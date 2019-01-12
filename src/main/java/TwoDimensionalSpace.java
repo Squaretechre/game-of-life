@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 class TwoDimensionalSpace {
-    private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
+    public static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
     private final LivingCells livingCells;
     private ArrayList<Cell> deadCellsForRemoval;
     private final int xAxis;
@@ -27,14 +27,8 @@ class TwoDimensionalSpace {
 
                 livingCells.tickFor(currentPoint);
 
-                birthNewCell(currentPoint);
+                livingCells.birthNewCell(currentPoint, this);
             }
-        }
-    }
-
-    public void birthNewCell(Point currentPoint) {
-        if (totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
-            birthNewCellAt(currentPoint);
         }
     }
 
@@ -60,11 +54,11 @@ class TwoDimensionalSpace {
         }
     }
 
-    private void birthNewCellAt(Point point) {
+    public void birthNewCellAt(Point point) {
         livingCells.add(new Cell(point, this, new Neighbourhood(point, this)));
     }
 
-    private int totalCellsNeighbouring(Point point) {
+    public int totalCellsNeighbouring(Point point) {
         return livingCells.totalCellsNeighbouring(point);
     }
 }
