@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 class Cells {
     private static final int NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
-    private final TwoDimensionalSpace twoDimensionalSpace;
+    public final TwoDimensionalSpace twoDimensionalSpace;
+    private final neighbourhoodFactory neighbourhoodFactory = new neighbourhoodFactory(this);
     private ArrayList<Cell> aliveCells;
     private ArrayList<Cell> deadCellsForRemoval;
     private ArrayList<Cell> cellsToBeBorn;
@@ -46,12 +47,12 @@ class Cells {
     }
 
     private void birthNewCellAt(Point point) {
-        neighbourhood = createNeighbourhood(point);
+        neighbourhood = neighbourhoodFactory.createNeighbourhood(point);
         registerBirth(new Cell(point, this, neighbourhood));
     }
 
     private Neighbourhood createNeighbourhood(Point point) {
-        return new Neighbourhood(point, twoDimensionalSpace);
+        return neighbourhoodFactory.createNeighbourhood(point);
     }
 
     void removeDeadCells() {
@@ -72,5 +73,9 @@ class Cells {
 
     void registerDeath(Cell cell) {
         deadCellsForRemoval.add(cell);
+    }
+
+    public TwoDimensionalSpace getTwoDimensionalSpace() {
+        return twoDimensionalSpace;
     }
 }
