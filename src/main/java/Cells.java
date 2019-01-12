@@ -15,10 +15,14 @@ class Cells implements CellObserver, Tickable {
 
     @Override
     public void tickFor(Point currentPoint) {
+        updateLivingCells(currentPoint);
+        checkIfNewCellShouldBeBornAt(currentPoint);
+    }
+
+    private void updateLivingCells(Point currentPoint) {
         for (Cell cell : aliveCells) {
             cell.tick(currentPoint);
         }
-        birthNewCell(currentPoint);
     }
 
     @Override
@@ -26,20 +30,26 @@ class Cells implements CellObserver, Tickable {
         deadCellsForRemoval.add(cell);
     }
 
-    void removeDeadCells() {
+    @Override
+    public void finishedTicking() {
+        removeDeadCells();
+        birthNewCells();
+    }
+
+    void addAt(Point point) {
+        aliveCells.add(createCellAt(point));
+    }
+
+    private void removeDeadCells() {
         for (var cell : deadCellsForRemoval) {
             remove(cell);
         }
     }
 
-    void birthNewCells() {
+    private void birthNewCells() {
         for (var cell : cellsToBeBorn) {
             add(cell);
         }
-    }
-
-    void addAt(Point point) {
-        aliveCells.add(createCellAt(point));
     }
 
     private void add(Cell cell) {
@@ -51,7 +61,7 @@ class Cells implements CellObserver, Tickable {
         aliveCells.remove(cell);
     }
 
-    private void birthNewCell(Point currentPoint) {
+    private void checkIfNewCellShouldBeBornAt(Point currentPoint) {
         if (totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
             birthNewCellAt(currentPoint);
         }
@@ -73,11 +83,5 @@ class Cells implements CellObserver, Tickable {
 
     boolean hasCellAt(Point point) {
         return aliveCells.contains(new Cell(point, new Neighbourhood(point, this)));
-    }
-
-    @Override
-    public void finishedTicking() {
-        removeDeadCells();
-        birthNewCells();
     }
 }

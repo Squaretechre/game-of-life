@@ -14,13 +14,9 @@ class TwoDimensionalSpace {
     void tick() {
         for (var y = 0; y < yAxis; y++) {
             for (var x = 0; x < xAxis; x++) {
-                tickable.tickFor(currentPoint(x, y));
+                tickable.tickFor(new Point(x, y));
             }
         }
         tickable.finishedTicking();
-    }
-
-    private Point currentPoint(int x, int y) {
-        return new Point(x, y);
     }
 }
