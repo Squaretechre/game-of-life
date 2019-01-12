@@ -15,23 +15,23 @@ class Cells {
         this.neighbourhoodFactory = neighbourhoodFactory;
     }
 
-    void add(Cell cell) {
-        this.aliveCells.add(cell);
+    void tickFor(Point currentPoint) {
+        for (Cell cell : aliveCells) {
+            cell.tick(currentPoint);
+        }
+        birthNewCell(currentPoint);
     }
 
     boolean contains(Cell cell) {
         return aliveCells.contains(cell);
     }
 
-    private void remove(Cell cell) {
-        aliveCells.remove(cell);
+    void add(Cell cell) {
+        aliveCells.add(cell);
     }
 
-    void tickFor(Point currentPoint) {
-        for (Cell cell : aliveCells) {
-            cell.tick(currentPoint);
-        }
-        birthNewCell(currentPoint);
+    private void remove(Cell cell) {
+        aliveCells.remove(cell);
     }
 
     private void birthNewCell(Point currentPoint) {
@@ -45,7 +45,7 @@ class Cells {
     }
 
     private void birthNewCellAt(Point point) {
-        registerBirth(new Cell(point, this, neighbourhoodFactory.createFor(point)));
+        cellsToBeBorn.add(new Cell(point, this, neighbourhoodFactory.createFor(point)));
     }
 
     void removeDeadCells() {
@@ -58,10 +58,6 @@ class Cells {
         for (var cell : cellsToBeBorn) {
             add(cell);
         }
-    }
-
-    private void registerBirth(Cell cell) {
-        cellsToBeBorn.add(cell);
     }
 
     void registerDeath(Cell cell) {
