@@ -1,5 +1,3 @@
-import life.Neighbourhood;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -11,7 +9,7 @@ class Cell {
 
     Cell(Point point) {
         this.point = point;
-        this.neighbours = new Neighbourhood(point).build();
+        this.neighbours = new Neighbourhood(point, twoDimensionalSpace).build();
     }
 
     void registerSpace(TwoDimensionalSpace twoDimensionalSpace) {

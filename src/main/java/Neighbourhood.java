@@ -1,16 +1,16 @@
-package life;
-
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Neighbourhood {
+class Neighbourhood {
     private final Point point;
+    private final TwoDimensionalSpace twoDimensionalSpace;
 
-    public Neighbourhood(Point point) {
+    Neighbourhood(Point point, TwoDimensionalSpace twoDimensionalSpace) {
         this.point = point;
+        this.twoDimensionalSpace = twoDimensionalSpace;
     }
 
-    public ArrayList<Point> build() {
+    ArrayList<Point> build() {
         var neighbours = new ArrayList<Point>();
         var top = new Point(point.x, point.y - 1);
         var topLeft = new Point(point.x - 1, point.y - 1);
