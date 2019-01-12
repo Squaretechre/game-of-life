@@ -1,5 +1,4 @@
 import org.apache.commons.io.IOUtils;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.*;
@@ -7,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
-import static org.hamcrest.CoreMatchers.containsString;
+import static junit.framework.TestCase.assertEquals;
 
 public class TextReporterTests {
     @Test
@@ -33,6 +32,6 @@ public class TextReporterTests {
         InputStream inputStream = className.getResourceAsStream("/expected-cells-1.txt");
         String expectedData = IOUtils.toString(inputStream, Charset.defaultCharset());
 
-        Assert.assertThat(textReporter.output(), containsString(expectedData));
+        assertEquals(expectedData, textReporter.output());
     }
 }
