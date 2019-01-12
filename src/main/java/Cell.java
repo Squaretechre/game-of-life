@@ -12,9 +12,11 @@ class Cell {
         this.neighbourhood = neighbourhood;
     }
 
-    void tick() {
-        if (shouldDie()) {
-            twoDimensionalSpace.registerDeath(this);
+    void tick(Point currentPoint) {
+        if (currentPoint.equals(point)) {
+            if (shouldDie()) {
+                twoDimensionalSpace.registerDeath(this);
+            }
         }
     }
 

@@ -9,7 +9,7 @@ class TwoDimensionalSpace {
     private final int yAxis;
 
     TwoDimensionalSpace(int x, int y) {
-        this.livingCells = new LivingCells(this);
+        this.livingCells = new LivingCells();
         this.deadCellsForRemoval = new ArrayList<>();
         this.xAxis = x;
         this.yAxis = y;
@@ -25,7 +25,7 @@ class TwoDimensionalSpace {
             for (var x = 0; x < xAxis; x++) {
                 var currentPoint = new Point(x, y);
 
-                livingCells.livingCellsTick(currentPoint, this);
+                livingCells.tickFor(currentPoint);
 
                 if (totalCellsNeighbouring(currentPoint) == NUMBER_OF_NEIGHBOURS_FOR_NEW_CELL_BIRTH) {
                     birthNewCellAt(currentPoint);
@@ -62,9 +62,5 @@ class TwoDimensionalSpace {
 
     private int totalCellsNeighbouring(Point point) {
         return livingCells.totalCellsNeighbouring(point);
-    }
-
-    public Cell cellAt(Point point) {
-        return livingCells.findCell(new Cell(point, this, new Neighbourhood(point, this)));
     }
 }

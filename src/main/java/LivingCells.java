@@ -2,16 +2,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 class LivingCells {
-    private final TwoDimensionalSpace twoDimensionalSpace;
     private ArrayList<Cell> aliveCells;
 
-    LivingCells(TwoDimensionalSpace twoDimensionalSpace) {
-        this.twoDimensionalSpace = twoDimensionalSpace;
+    LivingCells() {
         aliveCells = new ArrayList<>();
     }
 
     void add(Cell cell) {
-       this.aliveCells.add(cell);
+        this.aliveCells.add(cell);
     }
 
     boolean contains(Cell cell) {
@@ -26,13 +24,9 @@ class LivingCells {
         return (int) aliveCells.stream().filter(c -> c.neighboursCellAt(point)).count();
     }
 
-    Cell findCell(Cell cell) {
-        return aliveCells.stream().filter(c -> c.equals(cell)).findFirst().get();
-    }
-
-    void livingCellsTick(Point currentPoint, TwoDimensionalSpace twoDimensionalSpace) {
-        if (twoDimensionalSpace.cellExistsAt(currentPoint)) {
-            twoDimensionalSpace.cellAt(currentPoint).tick();
+    void tickFor(Point currentPoint) {
+        for (Cell cell : aliveCells) {
+            cell.tick(currentPoint);
         }
     }
 }
