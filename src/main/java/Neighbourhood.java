@@ -13,6 +13,17 @@ class Neighbourhood {
         this.neighbours = build();
     }
 
+    int totalNeighbours() {
+        return (int) allNeighbouringPoints().filter(twoDimensionalSpace::cellExistsAt).count();
+    }
+
+    boolean hasNeighbourAt(Point point) {
+        for (var neighbour : neighbours) {
+            if (neighbour.equals(point)) return true;
+        }
+        return false;
+    }
+
     private ArrayList<Point> build() {
         var neighbours = new ArrayList<Point>();
         var top = new Point(point.x, point.y - 1);
@@ -35,18 +46,7 @@ class Neighbourhood {
         return neighbours;
     }
 
-    int totalNeighbours() {
-        return (int) allNeighbouringPoints().filter(twoDimensionalSpace::cellExistsAt).count();
-    }
-
     private Stream<Point> allNeighbouringPoints() {
         return neighbours.stream();
-    }
-
-    boolean hasNeighbourAt(Point point) {
-        for (var neighbour : neighbours) {
-            if (neighbour.equals(point)) return true;
-        }
-        return false;
     }
 }
