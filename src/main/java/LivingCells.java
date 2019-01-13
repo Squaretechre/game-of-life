@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-class LivingCells implements CellObserver, Tickable, TickEndObserver {
+class LivingCells implements Tickable, TickEndObserver {
     private static final int NUMBER_OF_LIVING_NEIGHBOURS_FOR_NEW_CELL_BIRTH = 3;
     private ArrayList<Cell> aliveCells;
     private ArrayList<Cell> cellsToBeBorn;
@@ -35,8 +35,7 @@ class LivingCells implements CellObserver, Tickable, TickEndObserver {
         return !hasCellAt(currentPoint);
     }
 
-    @Override
-    public void notifyOfDeath(Cell cell) {
+    void notifyOfDeath(Cell cell) {
         deadCellsForRemoval.add(cell);
     }
 
@@ -58,10 +57,7 @@ class LivingCells implements CellObserver, Tickable, TickEndObserver {
     }
 
     private void birthNewCells() {
-        for (var cell : cellsToBeBorn) {
-            cell.registerObserver(this);
-            aliveCells.add(cell);
-        }
+        aliveCells.addAll(cellsToBeBorn);
         cellsToBeBorn.clear();
     }
 
@@ -70,9 +66,7 @@ class LivingCells implements CellObserver, Tickable, TickEndObserver {
     }
 
     private Cell createCellWith(Point point) {
-        var cell = new Cell(point, new Neighbourhood(point, this));
-        cell.registerObserver(this);
-        return cell;
+        return new Cell(this, point, new Neighbourhood(point, this));
     }
 
     boolean hasCellAt(Point point) {
