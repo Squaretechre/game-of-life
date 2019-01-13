@@ -15,12 +15,18 @@ class LivingCells implements Tickable, TickEndObserver {
 
     @Override
     public void tickFor(Point currentPoint) {
-        updateLivingCells(currentPoint);
+        notifyLivingCellsOfTickAt(currentPoint);
         checkIfNewCellShouldBeBornAt(currentPoint);
     }
 
-    private void updateLivingCells(Point currentPoint) {
-        for (Cell cell : aliveCells) {
+    @Override
+    public void finishedTicking() {
+        removeDeadCells();
+        birthNewCells();
+    }
+
+    private void notifyLivingCellsOfTickAt(Point currentPoint) {
+        for (var cell : aliveCells) {
             cell.tick(currentPoint);
         }
     }
@@ -39,20 +45,12 @@ class LivingCells implements Tickable, TickEndObserver {
         deadCellsForRemoval.add(cell);
     }
 
-    @Override
-    public void finishedTicking() {
-        removeDeadCells();
-        birthNewCells();
-    }
-
     void addAt(Point point) {
         aliveCells.add(createCellWith(point));
     }
 
     private void removeDeadCells() {
-        for (var cell : deadCellsForRemoval) {
-            aliveCells.remove(cell);
-        }
+        aliveCells.removeAll(deadCellsForRemoval);
         deadCellsForRemoval.clear();
     }
 
