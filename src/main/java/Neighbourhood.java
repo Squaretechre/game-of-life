@@ -5,12 +5,12 @@ import java.util.stream.Stream;
 class Neighbourhood {
     private final Point point;
     private final LivingCells livingCells;
-    private final ArrayList<Point> neighbours;
+    private final ArrayList<Point> neighbouringPoints;
 
     Neighbourhood(Point point, LivingCells cells) {
         this.point = point;
         this.livingCells = cells;
-        this.neighbours = build();
+        this.neighbouringPoints = buildNeighbouringPoints();
     }
 
     int totalLivingCellsInNeighbourhood() {
@@ -24,7 +24,7 @@ class Neighbourhood {
                 .anyMatch(neighbour -> neighbour.equals(point));
     }
 
-    private ArrayList<Point> build() {
+    private ArrayList<Point> buildNeighbouringPoints() {
         var top = new Point(point.x, point.y - 1);
         var topLeft = new Point(point.x - 1, point.y - 1);
         var topRight = new Point(point.x + 1, point.y - 1);
@@ -47,6 +47,6 @@ class Neighbourhood {
     }
 
     private Stream<Point> allNeighbouringPoints() {
-        return neighbours.stream();
+        return neighbouringPoints.stream();
     }
 }
