@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 class Cell {
     private final Point pointInSpace;
@@ -14,7 +13,7 @@ class Cell {
     }
 
     void tick(Point currentTickPoint) {
-        if (thisCellIsLocatedAt(currentTickPoint) && shouldDie()) {
+        if (this.cellIsLocatedAt(currentTickPoint) && shouldDie()) {
             notifyObserversOfDeath();
         }
     }
@@ -23,8 +22,12 @@ class Cell {
         observers.add(observer);
     }
 
-    boolean neighboursCellAt(Point point) {
-        return neighbourhood.hasNeighbourAt(point);
+    boolean isNeighbourOf(Point point) {
+        return neighbourhood.isNeighbourOf(point);
+    }
+
+    boolean cellIsLocatedAt(Point currentPoint) {
+        return pointInSpace.equals(currentPoint);
     }
 
     private void notifyObserversOfDeath() {
@@ -33,32 +36,15 @@ class Cell {
         }
     }
 
-    private boolean thisCellIsLocatedAt(Point currentPoint) {
-        return pointInSpace.equals(currentPoint);
-    }
-
     private boolean shouldDie() {
         return dieFromUnderpopulation() || dieFromOvercrowding();
     }
 
     private boolean dieFromUnderpopulation() {
-        return neighbourhood.totalNeighbours() < 2;
+        return neighbourhood.totalLivingCellsInNeighbourhood() < 2;
     }
 
     private boolean dieFromOvercrowding() {
-        return neighbourhood.totalNeighbours() > 3;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        var cell = (Cell) o;
-        return Objects.equals(pointInSpace, cell.pointInSpace);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(pointInSpace);
+        return neighbourhood.totalLivingCellsInNeighbourhood() > 3;
     }
 }

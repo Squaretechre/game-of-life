@@ -13,7 +13,7 @@ public class GameOfLifeTests {
         Point point2 = new Point(1, 0);
         Point point3 = new Point(1, 1);
 
-        var cells = new Cells();
+        var cells = new LivingCells();
         cells.addAt(point);
         cells.addAt(point1);
         cells.addAt(point2);
@@ -33,7 +33,7 @@ public class GameOfLifeTests {
         Point point = new Point(0, 0);
         Point point1 = new Point(1, 0);
 
-        var cells = new Cells();
+        var cells = new LivingCells();
         cells.addAt(point);
         cells.addAt(point1);
 
@@ -51,7 +51,7 @@ public class GameOfLifeTests {
         Point point3 = new Point(1, 0);
         Point point4 = new Point(1, 1);
 
-        var cells = new Cells();
+        var cells = new LivingCells();
         cells.addAt(point);
         cells.addAt(point1);
         cells.addAt(point2);
@@ -83,7 +83,7 @@ public class GameOfLifeTests {
         Point point12 = new Point(1, 2);
         Point point13 = new Point(2, 2);
 
-        var cells = new Cells();
+        var cells = new LivingCells();
         cells.addAt(point);
         cells.addAt(point1);
         cells.addAt(point2);
@@ -112,7 +112,7 @@ public class GameOfLifeTests {
         Point point2 = new Point(2, 1);
         Point point3 = new Point(3, 1);
 
-        var cells = new Cells();
+        var cells = new LivingCells();
         cells.addAt(point);
         cells.addAt(point1);
         cells.addAt(point2);

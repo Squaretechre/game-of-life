@@ -1,16 +1,14 @@
 import java.awt.*;
 
 class TextReporter {
-    private final Cells cells;
+    private final LivingCells cells;
     private final int xAxis;
     private final int yAxis;
-    private final String[][] grid;
 
-    TextReporter(Cells cells, int xAxis, int yAxis) {
+    TextReporter(LivingCells cells, int xAxis, int yAxis) {
         this.cells = cells;
         this.xAxis = xAxis;
         this.yAxis = yAxis;
-        this.grid = new String[yAxis][xAxis];
     }
 
     String output() {
@@ -27,7 +25,6 @@ class TextReporter {
                 gridText += "\n";
             }
         }
-
         return gridText;
     }
 }
